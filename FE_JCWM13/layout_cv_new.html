@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: darkgrey;
+            display: flex;
+            height: 100vh;
+            position: relative;
+        }
+
+        #left {
+            background-color: #1F1F1F;
+            width: 60%;
+            height: 100vh;
+            position: relative;
+            padding: 10%;
+        }
+        
+        #right {
+            background-color: #909090;
+            width: 40%;
+            height: 100vh;
+            position: relative;
+        }
+
+        h1 {
+            /* font-family: 'Varela Round', sans-serif; */
+            font-family: 'Odibee Sans', cursive;
+        }
+
+        img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-right: 20vw;
+        }
+
+        nav {
+            position: absolute;
+            display: flex;
+            background-color: transparent;
+            height: 10vh;
+            width: 100vw;
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.20);
+        }
+
+        .navbar-menu {
+            display: flex;
+            position: relative;
+            margin-left: auto;
+            flex-basis: 38.9%;
+            font-size: medium;
+            justify-content: space-around;
+        }
+
+        .line-nav {
+            background-color: black;
+            width: 2px;
+            height: 24px;
+            margin: auto;
+        }
+
+        nav>div {
+            display: flex;
+            flex-basis: 30%;
+            margin-left: auto;
+        }
+
+        nav>div>p {
+            color: aliceblue;
+            cursor: pointer;
+            margin: auto;
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        button{
+            border: 1px solid #00CCFF;
+            background-color: transparent;
+            color: #00CCFF;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: large;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #00CCFF;
+            color: #1F1F1F;
+            padding: 12px;
+            transition: 300ms;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="left">
+            <h1 style="color: #909090;">Hello, I am</h1>
+            <div style="display: flex;align-items: baseline;">
+                <h1 style="color: #909090;">Abdi</h1>
+                <h1 style="font-size: 14.5vw; color: #00CCFF;">Alghifara</h1>
+            </div>
+            <div style="display: flex;align-items: baseline;">
+                <h1 style="font-size: 4vw;color: #909090;">Felinanda</h1>
+                <h1 style="font-size: 2vw;color: #00CCFF;">Full-Stressoverflow</h1>
+            </div>
+            <button type="button">Call Me</button>
+        </div>
+        <div id="right">
+
+        </div>
+        <nav>
+            <div>
+                <p>Home</p>
+                <p>Profile</p>
+                <p>Experience</p>
+                <p>Portfolio</p>
+            </div>
+        </nav>
+        <img src="webprofilebw.png" height="110%" />
+    </div>
+</body>
+
+</html>

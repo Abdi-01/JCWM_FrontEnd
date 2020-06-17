@@ -1,0 +1,25 @@
+/* Css selector */
+/* By Element : select tag element*/
+body{css}
+div{css}
+table,td,th{css}
+
+/* By class : make class for some elements*/
+.container{}
+
+/* By id : select element yg memiliki id */
+#tab{}
+
+/* Multiple Selector */
+/* Select all div elements inside class container-b */
+.container-b div{
+
+}
+/* Select all div elements where the parent container-b */
+.container-b > div{
+
+}
+/* Select all elements with class container */
+div.container{
+    
+}

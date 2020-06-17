@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container-flex {
+            background-color: cadetblue;
+            width: 20vw;
+            height: 30vh;
+            display: flex;
+            justify-content: center;
+            /* align-items: stretch; */
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .container-position {
+            background-color: orange;
+            width: 70%;
+            height: 50vh;
+            /* display: grid; */
+        }
+
+        .box1,
+        .box2,
+        .box3 {
+            width: 50px;
+            height: 50px;
+            background-color: brown;
+            color: white;
+        }
+
+        .box1 {
+            background-color: brown;
+            text-align: center;
+            color: white;
+        }
+
+        .box2 {
+            background-color: blue;
+            text-align: center;
+            color: white;
+        }
+
+        .box3 {
+            background-color: yellow;
+            text-align: center;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-flex">
+        <!-- <div> akan otomatis mengambil width:100% -->
+        <!-- <div class="box1">
+        </div> -->
+        <div class="box2">
+        </div>
+        <div class="box3">
+        </div>
+        <div class="box1">
+        </div>
+        <div class="box2">
+        </div>
+        <div class="box3">
+        </div>
+    </div>
+    <div class="container-position">
+        <div class="box1" style="position: absolute;">
+        </div>
+        <!-- <div class="box2" style="position: relative;left: 10px;top: 10px;">
+        </div> -->
+        <div class="box3" style="left: 20px;position: relative;margin-top: 15px;">
+        </div>
+    </div>
+    <!-- <div>
+        <section class="container-span">
+            <div class="box1">
+                <h2>1</h2>
+            </div>
+            <div class="box2">
+                <h2>2</h2>
+            </div>
+            <div class="box3">
+                <h2>3</h2>
+            </div>
+        </section>
+    </div> -->
+</body>
+
+</html>
