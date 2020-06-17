@@ -1,0 +1,20 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container-dashboard{
+    /* background-color: brown; */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+tr,th,td,table,tbody,thead,tfoot{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
