@@ -1,0 +1,127 @@
+{
+    "dbUsers": [
+        {
+            "id": 1,
+            "username": "Admin",
+            "password": "1234",
+            "email": "admin@mail.com",
+            "role": "admin"
+        },
+        {
+            "id": 2,
+            "username": "Ade",
+            "password": "1234",
+            "email": "ade@mail.com",
+            "role": "user"
+        },
+        {
+            "id": 3,
+            "username": "Bima",
+            "password": "1234",
+            "email": "bima@mail.com",
+            "role": "user"
+        },
+        {
+            "id": 4,
+            "username": "Dimas",
+            "password": "1234",
+            "email": "dimas@mail.com",
+            "role": "user"
+        }
+    ],
+    "dbProducts": [
+        {
+            "id": 1,
+            "product": "Vulcan Low Olive GS",
+            "image": "https://cdn.shopify.com/s/files/1/0256/2398/6281/products/2_21f6129a-1132-4495-b901-2276178bb58a_2000x.jpg",
+            "category": "Sneakers",
+            "description": "BRODO Vulcan Series \nSepatu yang terinspirasi dari rasa nostalgia, dipakai kapan saja dengan gaya apa saja, tidak akan pernah salah. Dengan beragam pilihan warna, BRODO Vulcan akan menjadi #sepatuperjuangan brothers semua.\nSpesifikasi:\nCanvas upper\nOff-white foxing tape midsole\nVulcanized construction for reinforcement\nRubber gum outsole\nFlat cotton lace",
+            "size":[40,41,42,43,44],
+            "price":325000
+        },
+        {
+            "id": 2,
+            "product": "Nike Air Zoom Pegasus 37",
+            "image": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/d927da06-05bd-4cbd-9059-d9951fd9b6ed/air-zoom-pegasus-37-running-shoe-mwrTCc.jpg",
+            "category": "Sneakers",
+            "description": "Reinvigorate your stride with the Nike Air Zoom Pegasus 37. Delivering the same fit and feel that runners love, the shoe has an all-new forefoot cushioning unit and foam for maximum responsiveness. The result is a durable, lightweight trainer designed for everyday running.",
+            "size":[40,41,42,43,44],
+            "price":1325000
+        },
+        {
+            "id": 3,
+            "product": "Nike Court Vintage Premium",
+            "image": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/c3a7bb74-b02f-46bf-b95f-0b62b50fed3b/court-vintage-shoe-bvP4d4.jpg",
+            "category": "Sneakers",
+            "description": "The Nike Court Vintage Premium embodies '80s tennis at its best—laid-back and stylish. The smooth leather upper is combined with micro-branding for a relaxed look and feel, while the cushioned sockliner provides smooth comfort with every step.",
+            "size":[41,42,43],
+            "price":850000
+        },
+        {
+            "id": 4,
+            "product": "Nike Killshot OG SP",
+            "image": "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/3c144e28-b63a-453b-82a9-d75677bfae1f/killshot-og-sp-shoe-CBS7n2.jpg",
+            "category": "Sneakers",
+            "description": "The original low-profile tennis shoe returns with the Nike Killshot OG SP. This 1-to-1 retro highlights a variety of throwback materials, like an upper combining layers of open mesh, foam and soft suede overlays. The open foam tongue and heritage sole add court-side attitude while the super-plush foam insole keeps it comfortable.",
+            "size":[40,41,42,43,44],
+            "price":1125000
+        },
+        {
+            "id": 5,
+            "product": "Ruki Vintage Black",
+            "image": "https://cdn.shopify.com/s/files/1/0256/2398/6281/products/553-11769-ruki-vintage-black_2000x.jpg",
+            "category": "Sandal",
+            "description": "Sendal tak jarang jadi jagoan Brothers untuk menemani langkah saat weekend datang namun tak gampang mencari alas kaki yang tepat dan Om Bro pun mengerti akan hal tersebut. Hal tersebutlah yang jadi alasan lahirnya ARU dan RUKI dua alas kaki yang sesuai dengan keinginan Brothers: Simple Presisi Elegan.",
+            "size":[40,41,42,43],
+            "price":425000
+        },
+        {
+            "id": 6,
+            "product": "Eiger Bhardev Roll Strap Sole Blk Sandal - Black",
+            "image": "https://eigerindostore.com//media//catalog//product//cache//image//e9c3970ab036de70892d86c6d221abfe//9//1//910005777-bhardev-roll-sol-black-blk.03.jpg",
+            "category": "Sandal",
+            "description": "Bhardev Roll Strap Sole adalah sandal jepit serbaguna untuk pemakaian harian ataupun pada saat melakukan kegiatan di sekitar areacampground. Sandal ini memiliki bantalan kaki yang empuk dan fleksibilitas yang baik dengan anatomi lengkungan di bagian tengah kaki.Didukung juga pada bagian outsole yang menyediakan grip yang baik untuk permukaan di alam terbuka",
+            "size":[40,41,42,43,44],
+            "price":249000
+        },
+        {
+            "id": 7,
+            "product": "X 19.1 Firm Ground Boots",
+            "image": "https://static.shop.adidas.co.id/media/catalog/product/cache/2/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/E/G/EG7125_SL_eCom.jpg",
+            "category": "Sport",
+            "description": "Fast doesn't count the seconds. It just chalks up the wins. Speed is hot-wired into your DNA. These football boots have a thin mesh upper to reduce the load and improve your touch. A low-cut silhouette and moulded heel work together to strap you in. The outsole is perforated for lightning-quick acceleration on firm ground. Supercharge your game in adidas X 19.1 Firm Ground Boots.",
+            "size":[42,43,44],
+            "price":3250000
+        },
+        {
+            "id": 8,
+            "product": "Nemeziz 19.1 Firm Ground Boots",
+            "image": "https://static.shop.adidas.co.id/media/catalog/product/cache/2/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/E/G/EG7325_SL_eCom.jpg",
+            "category": "Sport",
+            "description": "You swerve every challenge. Twist yourself around your rivals until their games unravel. Don't apologise, it's a gift. These football boots have a stretchy upper that stabilises your stance without cramping your style. The outsole is split, so it flexes with your footwork as weave your magic on the pitch. Embrace your agility in adidas Nemeziz 19.1 Firm Ground Boots.",
+            "size":[40,41,42,43,44],
+            "price":3250000
+        },
+        {
+            "id": 9,
+            "product": "Slides Adilette Aqua",
+            "image": "https://static.shop.adidas.co.id/media/catalog/product/cache/2/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/F/3/F35538_SL_eCom.jpg",
+            "category": "Sandal",
+            "description": "Lakukan aktivitas membilas setelah berenang dengan sandal yang tahan air ini. Sandal slip-on berbahan halus ini memiliki desain yang minimalis dengan 3-Stripes khas yang menunjukkan ciri khas adidas. Bantalan lembut, empuk, dan nyaman memanjakan kaki Anda yang lelah.",
+            "size":[40,41,42,43,44],
+            "price":225000
+        },
+        {
+            "id": 10,
+            "product": "Daniel Patrick x Harden Vol. 4 Shoes",
+            "image": "https://static.shop.adidas.co.id/media/catalog/product/cache/2/thumbnail/1200x/9df78eab33525d08d6e5fb8d27136e95/F/V/FV8921_SL_eCom.jpg",
+            "category": "Sport",
+            "description": "MVP style with a high-end look. Created in collaboration with designer Daniel Patrick, these adidas basketball shoes are inspired by James Harden's signature moves. A leather upper with midfoot reinforcement locks down your foot as you stop and go on a dime. Grip the hardwood with confidence and style.",
+            "size":[42,43,44],
+            "price":2000000
+        }
+    ],
+    "dbCarts":[],
+    "dbTransactions":[],
+    "dbHistory":[]
+}
