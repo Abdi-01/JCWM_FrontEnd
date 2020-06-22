@@ -41,6 +41,7 @@ export default (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
+                             {/*🔽props yg diambli dari App.js nama props tergantung nama yg dibikin di App.js, kecuali children */}
                         News {props.data + ' ' + props.hobby + ' ' + props.children}
                     </Typography>
                     <Button color="inherit">Login</Button>
