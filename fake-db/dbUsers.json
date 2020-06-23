@@ -27,41 +27,6 @@
       "password": "1234",
       "email": "dimas@mail.com",
       "role": "user"
-    },
-    {
-      "username": "Danu",
-      "password": "565656",
-      "email": "hsdghsdgv",
-      "role": "user",
-      "id": 5
-    },
-    {
-      "username": "sdsd",
-      "password": "sdsd",
-      "email": "sdsd",
-      "role": "user",
-      "id": 6
-    },
-    {
-      "username": "as",
-      "password": "ass",
-      "email": "as",
-      "role": "user",
-      "id": 7
-    },
-    {
-      "username": "as",
-      "password": "ass",
-      "email": "as",
-      "role": "user",
-      "id": 8
-    },
-    {
-      "username": "sasas",
-      "password": "asas",
-      "email": "asasas",
-      "role": "user",
-      "id": 9
     }
   ]
 }

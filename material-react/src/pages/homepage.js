@@ -82,24 +82,37 @@ class Home extends Component {
         let role = 'user'
         console.log("cek inputan", username, password, email, role)
 
-        if (username == "" | password == "" | email == "") {
+        //  ⬇⬇⬇ ini merupakan proteksi sederhana untuk mengetahui data yg diinput sudah terisi atau tidak
+        //  ⬇⬇⬇ Dalam membuat kondisi perhatikan LOGIC OPERATOR yg digunakan direact dianjurkan jika menggunakan pembanding sama dengan gunakan "===" karena bertujuan sekaligus memproteksi tipe data dan data yg dibandingkan sama.
+        if (username === "" | password === "" | email === "") {
+            //  ⬇⬇⬇ Konfigurasi penyimpanan data pada state yang akan dikirim melalui props ke AlertComponent
             this.setState({ openAlert: !this.state.openAlert, infoAlert: "error", messageAlert: "Isi semua form !!! ⛔ " })
-        } else {
+        }
+        else {
+            //  ⬇⬇⬇ perhatikan susunan Axios.post yaitu Axios.post(URL,body/data,header). Yang wajib ada adalah URL dan BODY/DATA
+            //         ----⬇⬇⬇ URL-----   ---⬇⬇⬇ body/data berupa object--- 
             Axios.post(URL + "/dbUsers", { username, password, email, role })
                 .then((res) => {
                     console.log("response", res.data)
+                    //   ⬇⬇⬇  Setiap selesai melakukan POST, PUT/PATCH atau DELETE jangan lupa data di GET ULANG
                     this.getData()
                 })
                 .catch((err) => {
                     console.log("Error", err)
                 })
+            //  ⬇⬇⬇ Konfigurasi penyimpanan data pada state yang akan dikirim melalui props ke AlertComponent
             this.setState({ openAlert: !this.state.openAlert, infoAlert: "success", messageAlert: "Data masuk ✅ " })
         }
-
     }
 
     onBtDelete = (id) => {
         Axios.delete(URL + `/dbUsers/${id}`)
+            .then((res) => {
+                this.getData()
+            })
+            .catch((err) => {
+                console.log("Error", err)
+            })
     }
 
     printData = () => {
@@ -140,18 +153,22 @@ class Home extends Component {
                         Examp : <Component_yg_di_import namaProps=data>props.children</Component_yg_di_import>
                         open = nama props yg dikirim ke AlertComponent berupa boolean
                         close = nama props yg dikirim ke AlertComponent berupa component
+
+                        Semua data propsnya diambil dari data state kecuali props.close yg berupa component
                         contoh code dibawah ini 
                         ⬇
                         ⬇                        
                     */}
-                    <AlertComponent info={this.state.infoAlert} message={this.state.messageAlert} open={this.state.openAlert} close={<IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => this.setState({ openAlert: !this.state.openAlert })}
-                    >
-                        <CloseIcon fontSize="inherit" />
-                    </IconButton>} />
+                    <AlertComponent info={this.state.infoAlert} message={this.state.messageAlert} open={this.state.openAlert}
+                        close={<IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => this.setState({ openAlert: !this.state.openAlert })}
+                        >
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>}
+                    />
                     <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
