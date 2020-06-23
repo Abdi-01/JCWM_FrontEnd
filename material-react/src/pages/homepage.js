@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios'
-import { IconButton,Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableFooter, TextField } from '@material-ui/core';
+import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableFooter, TextField } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import AlertComponent from '../components/alert'
 const URL = "http://localhost:1010"
@@ -14,7 +14,9 @@ class Home extends Component {
         this.state = {
             dbUsers: [],
             selectedID: null,
-            openAlert: false
+            openAlert: false,
+            infoAlert: "",
+            messageAlert: ""
         }
     }
 
@@ -81,7 +83,7 @@ class Home extends Component {
         console.log("cek inputan", username, password, email, role)
 
         if (username == "" | password == "" | email == "") {
-            this.setState({ openAlert: !this.state.openAlert })
+            this.setState({ openAlert: !this.state.openAlert, infoAlert: "error", messageAlert: "Isi semua form !!! ⛔ " })
         } else {
             Axios.post(URL + "/dbUsers", { username, password, email, role })
                 .then((res) => {
@@ -91,8 +93,13 @@ class Home extends Component {
                 .catch((err) => {
                     console.log("Error", err)
                 })
+            this.setState({ openAlert: !this.state.openAlert, infoAlert: "success", messageAlert: "Data masuk ✅ " })
         }
 
+    }
+
+    onBtDelete = (id) => {
+        Axios.delete(URL + `/dbUsers/${id}`)
     }
 
     printData = () => {
@@ -106,7 +113,7 @@ class Home extends Component {
                     <TableCell align="right">{item.password}</TableCell>
                     <TableCell align="right">{item.email}</TableCell>
                     <TableCell align="right">
-                        <Button variant="contained" color="secondary">
+                        <Button variant="contained" color="secondary" onClick={() => this.onBtDelete(item.id)}>
                             Delete
                         </Button>
                         <Button variant="contained" color="primary">
@@ -120,17 +127,28 @@ class Home extends Component {
 
     render() {
         console.log("first")
-        // 
-
         return (
             <div>
                 <h1>INI HOME</h1>
                 <div style={{ width: '70vw', margin: 'auto' }}>
-                    <AlertComponent open={this.state.openAlert} close={<IconButton
+                    {/* AlertComponent : merupakan component yg di import dari file alert.js, karena alert hanya ingin dimuculkan sebagai notif pada table yg ada
+                        di homepage maka di import di homepage.js  
+                        Cara memberi data pada components react bisa melalui props jika component yg dibuat dengan functional component.
+                        Props dibuat didalam <tag> componentnya.
+                        Tipe data yg dikirim lewat props dapat berupa STRING,NUMBER,FUNGSI, atau COMPONENT
+                        *Note : TERGANTUNG KEBUTUHAN
+                        Examp : <Component_yg_di_import namaProps=data>props.children</Component_yg_di_import>
+                        open = nama props yg dikirim ke AlertComponent berupa boolean
+                        close = nama props yg dikirim ke AlertComponent berupa component
+                        contoh code dibawah ini 
+                        ⬇
+                        ⬇                        
+                    */}
+                    <AlertComponent info={this.state.infoAlert} message={this.state.messageAlert} open={this.state.openAlert} close={<IconButton
                         aria-label="close"
                         color="inherit"
                         size="small"
-                        onClick={()=>this.setState({ openAlert: !this.state.openAlert })}
+                        onClick={() => this.setState({ openAlert: !this.state.openAlert })}
                     >
                         <CloseIcon fontSize="inherit" />
                     </IconButton>} />

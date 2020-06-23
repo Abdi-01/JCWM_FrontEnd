@@ -5,7 +5,7 @@ import { Alert } from '@material-ui/lab';
 export default (props) => {
     return (
         <Collapse in={props.open}>
-            <Alert severity="error" action={props.close}>Isi semua form !!! </Alert>
+            <Alert severity={props.info} action={props.close}>{props.message}</Alert>
         </Collapse>
     )
 }
