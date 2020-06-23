@@ -38,6 +38,18 @@ class Home extends Component {
             🔹 Susunan URL terdiri dari==> http://domainnyaAPA:portnyaBERAPA/parameternyaAPA?queryAPA
                 🔸 contoh domain : localhost(untuk local), api.zomato.com(jika domain online), 58.163.177.23(atau domain yg berupa IP)
                 🔸 contoh port : 2020, 8081, 2324 =>>bebas umumnya terdiri dari 4 angka 
+                🔸 Parameter :  biasanya merujuk lokasi file atau path="/"
+
+            🔹 PORT
+                Port yang biasanya udah dipakek itu : 80,1280,8080, 3306(ini untuk MySQL biasanya), 3000(defaultnya react)
+                port itu bergantung IP, apakah di IP tersebut port yg kita mau pakek udah ada yg makek apa belum.
+                Jadi missal di 
+                IP http://192.168.30.1:2020
+                IP http://192.168.40.1:2020
+                IP http://api.newsapi.com:2020
+                IP http://localhost:2020
+                ini gag masalah gag bakal bentrok selama IP, domain atau hostingnya  beda
+
         */
         Axios.get(URL + "/dbUsers")
             .then((res) => {
@@ -47,7 +59,7 @@ class Home extends Component {
 
             })
     }
- 
+
     render() {
         console.log("first")
         return (
