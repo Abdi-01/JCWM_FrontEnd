@@ -1,32 +1,46 @@
 {
-    "dbUsers": [
-        {
-            "id": 1,
-            "username": "Admin",
-            "password": "1234",
-            "email": "admin@mail.com",
-            "role": "admin"
-        },
-        {
-            "id": 2,
-            "username": "Ade",
-            "password": "1234",
-            "email": "ade@mail.com",
-            "role": "user"
-        },
-        {
-            "id": 3,
-            "username": "Bima",
-            "password": "1234",
-            "email": "bima@mail.com",
-            "role": "user"
-        },
-        {
-            "id": 4,
-            "username": "Dimas",
-            "password": "1234",
-            "email": "dimas@mail.com",
-            "role": "user"
-        }
-    ]
+  "dbUsers": [
+    {
+      "id": 1,
+      "username": "Admin",
+      "password": "1234",
+      "email": "admin@mail.com",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "Ade",
+      "password": "1234",
+      "email": "ade@mail.com",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "username": "Bima",
+      "password": "1234",
+      "email": "bima@mail.com",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "username": "Dimas",
+      "password": "1234",
+      "email": "dimas@mail.com",
+      "role": "user"
+    },
+    {
+      "username": "Danu",
+      "password": "565656",
+      "email": "hsdghsdgv",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "username": "sdsd",
+      "password": "sdsd",
+      "email": "sdsd",
+      "role": "user",
+      "id": 6
+    }
+  ]
 }

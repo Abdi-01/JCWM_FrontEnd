@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableFooter, TextField } from '@material-ui/core';
-
+import { IconButton,Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableFooter, TextField } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import AlertComponent from '../components/alert'
 const URL = "http://localhost:1010"
 
 /*penuliasan class components biasanya digunakan untuk membuat page yang memang membutuhkan penyimpanan data
@@ -11,7 +12,9 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dbUsers: []
+            dbUsers: [],
+            selectedID: null,
+            openAlert: false
         }
     }
 
@@ -27,8 +30,9 @@ class Home extends Component {
       property this.state maupun this.setState
     */
     getData = () => {
-        /*  Axios.get digunakan untuk mengambil data dari server(json-server atau online free API seperti NewsAPI) 
-            yg terdiri dari URL dan parameter atau query
+        /*🟡Axios.get digunakan untuk mengambil data dari server(json-server atau online free API seperti NewsAPI) 
+            yg terdiri dari URL dan properti atau query
+                Axios.post(URL,body,header)
             Axios memiliki property promise yaitu :
             🔹 .then((res)=>{you get data yeay !! 🤩}) jika Axios berhasil mendapat response yg berupa data ✅
             🔹 .catch((error)=>{you get ERROR !! 🤬}) jika Axios tidak mendapat response data dan menerima error ❌
@@ -44,12 +48,20 @@ class Home extends Component {
                 Port yang biasanya udah dipakek itu : 80,1280,8080, 3306(ini untuk MySQL biasanya), 3000(defaultnya react)
                 port itu bergantung IP, apakah di IP tersebut port yg kita mau pakek udah ada yg makek apa belum.
                 Jadi missal di 
-                IP http://192.168.30.1:2020
-                IP http://192.168.40.1:2020
-                IP http://api.newsapi.com:2020
-                IP http://localhost:2020
+                IP http://192.168.30.1:2020 ✅
+                IP http://192.168.40.1:2020 ✅
+                IP http://api.newsapi.com:2020 ✅
+                IP http://localhost:2020 ✅
+                IP http://localhost:2020 ⛔ salah karena sudah digunakan sebelumnya
                 ini gag masalah gag bakal bentrok selama IP, domain atau hostingnya  beda
 
+          🟡Axios.post : menambah data baru
+                Axios.post(URL,body,header)
+          🟡Axios.put : mengganti SELURUH data pada id yg dituju
+                Axios.put(URL,body,header)
+          🟡Axios.patch : mengganti SEBAGIAN data pada id yg dituju
+                Axios.patch(URL,body,header)
+          🟡Axios.delete : menghapus data berdasarkan id yg dituju
         */
         Axios.get(URL + "/dbUsers")
             .then((res) => {
@@ -65,7 +77,22 @@ class Home extends Component {
         let username = this.username.value
         let password = this.password.value
         let email = this.email.value
-        console.log(username, password, email)
+        let role = 'user'
+        console.log("cek inputan", username, password, email, role)
+
+        if (username == "" | password == "" | email == "") {
+            this.setState({ openAlert: !this.state.openAlert })
+        } else {
+            Axios.post(URL + "/dbUsers", { username, password, email, role })
+                .then((res) => {
+                    console.log("response", res.data)
+                    this.getData()
+                })
+                .catch((err) => {
+                    console.log("Error", err)
+                })
+        }
+
     }
 
     printData = () => {
@@ -73,14 +100,17 @@ class Home extends Component {
             return (
                 <TableRow key={index}>
                     <TableCell component="th" scope="row">
-                        {item.username}
+                        {index + 1}
                     </TableCell>
+                    <TableCell align="right">{item.username}</TableCell>
                     <TableCell align="right">{item.password}</TableCell>
                     <TableCell align="right">{item.email}</TableCell>
-                    <TableCell align="right">{item.role}</TableCell>
                     <TableCell align="right">
                         <Button variant="contained" color="secondary">
                             Delete
+                        </Button>
+                        <Button variant="contained" color="primary">
+                            Edit
                         </Button>
                     </TableCell>
                 </TableRow>
@@ -90,12 +120,20 @@ class Home extends Component {
 
     render() {
         console.log("first")
-        // const classes = useStyles();
+        // 
 
         return (
             <div>
                 <h1>INI HOME</h1>
                 <div style={{ width: '70vw', margin: 'auto' }}>
+                    <AlertComponent open={this.state.openAlert} close={<IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={()=>this.setState({ openAlert: !this.state.openAlert })}
+                    >
+                        <CloseIcon fontSize="inherit" />
+                    </IconButton>} />
                     <TableContainer component={Paper}>
                         <Table aria-label="simple table">
                             <TableHead>
@@ -113,12 +151,12 @@ class Home extends Component {
                             </TableBody>
                             <TableFooter>
                                 <TableRow>
-                                    <TableCell>+</TableCell>
+                                    <TableCell></TableCell>
                                     <TableCell align="right"><TextField id="standard-basic" label="Username" inputRef={(text) => this.username = text} /></TableCell>
                                     <TableCell align="right"><TextField id="standard-basic" label="Password" inputRef={(text) => this.password = text} /></TableCell>
                                     <TableCell align="right"><TextField id="standard-basic" label="Email" inputRef={(text) => this.email = text} /></TableCell>
                                     <TableCell align="right">
-                                        <Button color="Primary" onClick={this.onBtAdd}>
+                                        <Button color="primary" onClick={this.onBtAdd}>
                                             Add
                                         </Button>
                                     </TableCell>
