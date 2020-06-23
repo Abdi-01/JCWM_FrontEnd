@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios'
-import TableComponent from '../components/table'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableFooter, TextField } from '@material-ui/core';
 
 const URL = "http://localhost:1010"
 
@@ -35,10 +35,10 @@ class Home extends Component {
 
             NOTE :
             🔹 Pastikan URL benar, mulai dari alamat, port maupun parameter
-            🔹 Susunan URL terdiri dari==> http://domainnyaAPA:portnyaBERAPA/parameternyaAPA?queryAPA
+            🔹 Susunan URL terdiri dari==> http://domainnyaAPA:portnyaBERAPA/propertinyaAPA?queryAPA
                 🔸 contoh domain : localhost(untuk local), api.zomato.com(jika domain online), 58.163.177.23(atau domain yg berupa IP)
                 🔸 contoh port : 2020, 8081, 2324 =>>bebas umumnya terdiri dari 4 angka 
-                🔸 Parameter :  biasanya merujuk lokasi file atau path="/"
+                🔸 Properti :  biasanya merujuk lokasi file atau path="/"
 
             🔹 PORT
                 Port yang biasanya udah dipakek itu : 80,1280,8080, 3306(ini untuk MySQL biasanya), 3000(defaultnya react)
@@ -54,19 +54,79 @@ class Home extends Component {
         Axios.get(URL + "/dbUsers")
             .then((res) => {
                 console.log(res.data)
+                this.setState({ dbUsers: res.data })
             })
             .catch((err) => {
-
+                console.log("Error BOS❌❌", err)
             })
+    }
+
+    onBtAdd = () => {
+        let username = this.username.value
+        let password = this.password.value
+        let email = this.email.value
+        console.log(username, password, email)
+    }
+
+    printData = () => {
+        return this.state.dbUsers.map((item, index) => {
+            return (
+                <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                        {item.username}
+                    </TableCell>
+                    <TableCell align="right">{item.password}</TableCell>
+                    <TableCell align="right">{item.email}</TableCell>
+                    <TableCell align="right">{item.role}</TableCell>
+                    <TableCell align="right">
+                        <Button variant="contained" color="secondary">
+                            Delete
+                        </Button>
+                    </TableCell>
+                </TableRow>
+            )
+        })
     }
 
     render() {
         console.log("first")
+        // const classes = useStyles();
+
         return (
             <div>
                 <h1>INI HOME</h1>
-                <TableComponent />
-                {/* Memanggil javascript syntax didalam return(<element/>) harus menggunakan {bracket}, tapi hanya berlaku untuk one line syntax */}
+                <div style={{ width: '70vw', margin: 'auto' }}>
+                    <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>No</TableCell>
+                                    <TableCell align="right">Username</TableCell>
+                                    <TableCell align="right">Password</TableCell>
+                                    <TableCell align="right">Email</TableCell>
+                                    <TableCell align="right">Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {/* ⬇⬇⬇ Memanggil javascript syntax didalam return(<element/>) harus menggunakan {bracket}, tapi hanya berlaku untuk single line syntax */}
+                                {this.printData()}
+                            </TableBody>
+                            <TableFooter>
+                                <TableRow>
+                                    <TableCell>+</TableCell>
+                                    <TableCell align="right"><TextField id="standard-basic" label="Username" inputRef={(text) => this.username = text} /></TableCell>
+                                    <TableCell align="right"><TextField id="standard-basic" label="Password" inputRef={(text) => this.password = text} /></TableCell>
+                                    <TableCell align="right"><TextField id="standard-basic" label="Email" inputRef={(text) => this.email = text} /></TableCell>
+                                    <TableCell align="right">
+                                        <Button color="Primary" onClick={this.onBtAdd}>
+                                            Add
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            </TableFooter>
+                        </Table>
+                    </TableContainer>
+                </div>
             </div>
         );
     }
