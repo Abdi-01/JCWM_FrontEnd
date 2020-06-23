@@ -106,6 +106,8 @@ class Home extends Component {
     }
 
     onBtDelete = (id) => {
+        //  ⬇⬇⬇ perhatikan susunan Axios.delete yaitu Axios.post(URL+idData). Yang wajib ada adalah URL dan BODY/DATA
+        //          ----⬇⬇⬇ URL+⬇id data---- 
         Axios.delete(URL + `/dbUsers/${id}`)
             .then((res) => {
                 this.getData()
@@ -115,26 +117,62 @@ class Home extends Component {
             })
     }
 
+    onBtEdit = (id) => {
+        let username = this.newUsername.value
+        let password = this.newPassword.value
+        let email = this.newEmail.value
+        let role = 'user'
+        Axios.patch(URL + `/dbUsers/${id}`, { username, password, email, role })
+            .then((res) => {
+                this.getData()
+                this.setState({selectedID:null})
+            })
+            .catch((err) => {
+                console.log("Error", err)
+            })
+    }
+
     printData = () => {
         return this.state.dbUsers.map((item, index) => {
-            return (
-                <TableRow key={index}>
-                    <TableCell component="th" scope="row">
-                        {index + 1}
-                    </TableCell>
-                    <TableCell align="right">{item.username}</TableCell>
-                    <TableCell align="right">{item.password}</TableCell>
-                    <TableCell align="right">{item.email}</TableCell>
-                    <TableCell align="right">
-                        <Button variant="contained" color="secondary" onClick={() => this.onBtDelete(item.id)}>
-                            Delete
-                        </Button>
-                        <Button variant="contained" color="primary">
-                            Edit
-                        </Button>
-                    </TableCell>
-                </TableRow>
-            )
+            if (item.id === this.state.selectedID) {
+                return (
+                    <TableRow key={index}>
+                        <TableCell component="th" scope="row">
+                            {index + 1}
+                        </TableCell>
+                        <TableCell align="right"><TextField id="standard-basic" label={item.username} defaultValue={item.username} inputRef={(text) => this.newUsername = text} /></TableCell>
+                        <TableCell align="right"><TextField id="standard-basic" label={item.password} defaultValue={item.password} inputRef={(text) => this.newPassword = text} /></TableCell>
+                        <TableCell align="right"><TextField id="standard-basic" label={item.email} defaultValue={item.email} inputRef={(text) => this.newEmail = text} /></TableCell>
+                        <TableCell align="right">
+                            <Button variant="contained" color="secondary" onClick={() => this.setState({ selectedID: null })}>
+                                No
+                            </Button>
+                            <Button variant="contained" color="primary" onClick={() => this.onBtEdit(item.id)}>
+                                Yes
+                            </Button>
+                        </TableCell>
+                    </TableRow>
+                )
+            } else {
+                return (
+                    <TableRow key={index}>
+                        <TableCell component="th" scope="row">
+                            {index + 1}
+                        </TableCell>
+                        <TableCell align="right">{item.username}</TableCell>
+                        <TableCell align="right">{item.password}</TableCell>
+                        <TableCell align="right">{item.email}</TableCell>
+                        <TableCell align="right">
+                            <Button variant="contained" color="secondary" onClick={() => this.onBtDelete(item.id)}>
+                                Delete
+                            </Button>
+                            <Button variant="contained" color="primary" onClick={() => this.setState({ selectedID: item.id })}>
+                                Edit
+                            </Button>
+                        </TableCell>
+                    </TableRow>
+                )
+            }
         })
     }
 

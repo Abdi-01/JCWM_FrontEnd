@@ -1,17 +1,10 @@
 {
   "dbUsers": [
     {
-      "id": 1,
-      "username": "Admin",
-      "password": "1234",
-      "email": "admin@mail.com",
-      "role": "admin"
-    },
-    {
       "id": 2,
-      "username": "Ade",
-      "password": "1234",
-      "email": "ade@mail.com",
+      "username": "Ade Nama",
+      "password": "asas",
+      "email": "qsqsqssds",
       "role": "user"
     },
     {
