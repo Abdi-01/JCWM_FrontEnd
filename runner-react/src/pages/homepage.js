@@ -1,6 +1,8 @@
 import React from 'react';
 import Axios from 'axios'
 import CarouselComp from '../components/carousel'
+import { connect } from 'react-redux'
+import { getSlider } from '../redux/actions'
 
 const URL = "http://localhost:2500"
 class Homepage extends React.Component {
@@ -20,21 +22,22 @@ class Homepage extends React.Component {
             .then((res) => {
                 console.log(res.data)
                 this.setState({ slideImage: res.data })
+                this.props.getSlider(res.data)
             }).catch((err) => {
                 console.log("Error BOS !", err)
             })
     }
 
     render() {
+        console.log("MapToprops", this.props.slide)
         return (
             <div>
-                <div style={{ display: 'flex', width: '100vw',overflow:'hidden' }}>
+                <div style={{ display: 'flex', width: '100vw', overflow: 'hidden' }}>
                     <div style={{ width: '50%' }}>
-                        <img src={require('../assets/images/logoB.png')} width="100%" style={{marginTop:"20vh"}}/>
+                        <img src={require('../assets/images/logoB.png')} width="100%" style={{ marginTop: "20vh" }} />
                     </div>
-                    <div style={{ width: '50%',height:'45%' }}>
-
-                        <CarouselComp dataSlider={this.state.slideImage} />
+                    <div style={{ width: '50%', height: '45%' }}>
+                        <CarouselComp dataSlider={this.props.slide} />
                     </div>
                 </div>
             </div>
@@ -42,4 +45,11 @@ class Homepage extends React.Component {
     }
 }
 
-export default Homepage;
+const mapToProps = (state) => {
+    console.log("MapToprops", state.sliderReducer)
+    return {
+        slide: state.sliderReducer
+    }
+}
+
+export default connect(mapToProps, { getSlider })(Homepage);

@@ -4,7 +4,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import EmailIcon from '@material-ui/icons/Email';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom';
@@ -51,16 +50,16 @@ class Login extends React.Component {
         })
         console.log("huruf:", abjad.test(pass), "angka:", num.test(pass), "symbol:", spec.test(pass), "pass:", (pass.length > 7), (abjad.test(pass) ^ num.test(pass)))
         if (abjad.test(pass) && num.test(pass) && spec.test(pass) && (pass.length > 7)) {
-            this.setState({ colorBar: "green", valueBar: 90 })
+            this.setState({ colorBar: "green", valueBar: 90, btRegis: true })
         }
         else if ((abjad.test(pass) ^ num.test(pass)) === 1 && spec.test(pass) && (pass.length > 7)) {
-            this.setState({ colorBar: "yellow", valueBar: 60 })
+            this.setState({ colorBar: "yellow", valueBar: 60, btRegis: true })
         }
         else if (abjad.test(pass) && num.test(pass) && (pass.length > 7)) {
-            this.setState({ colorBar: "red", valueBar: 30 })
+            this.setState({ colorBar: "red", valueBar: 30, btRegis: true })
         }
         else {
-            this.setState({ colorBar: "grey", valueBar: 0 })
+            this.setState({ colorBar: "grey", valueBar: 0, btRegis: false })
         }
     }
 
@@ -75,9 +74,19 @@ class Login extends React.Component {
             alert("Fill in all forms ✍")
         } else {
             if (password === confpass) {
-                Axios.post(URL + `/users`, { username, email, password, role })
+                Axios.get(URL + `/users?username=${username}&email=${email}`)
                     .then((res) => {
-                        this.setState({ redirect: true })
+                        if (res.data.length > 0) {
+                            alert("username dan email sudah digunakan")
+                        } else {
+                            Axios.post(URL + `/users`, { username, email, password, role })
+                                .then((res) => {
+                                    this.setState({ redirect: true })
+                                })
+                                .catch((err) => {
+                                    console.log(err)
+                                })
+                        }
                     })
                     .catch((err) => {
                         console.log(err)
@@ -178,7 +187,7 @@ class Login extends React.Component {
                                 variant="contained"
                                 color="default"
                                 // className={classes.button}
-                                disabled={this.state.border ? false : true}
+                                disabled={this.state.btRegis ? false : true}
                                 onClick={this.onBtRegister}
                                 startIcon={<AssignmentIndIcon />}
                             >
