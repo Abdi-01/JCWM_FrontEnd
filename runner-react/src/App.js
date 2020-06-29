@@ -4,17 +4,19 @@ import Homepage from './pages/homepage'
 import Productpage from './pages/productpage'
 import Profilepage from './pages/profilepage'
 import Loginpage from './pages/login'
+import Registerpage from './pages/register'
 import NavbarComponent from './components/navbar'
 import { Route } from 'react-router-dom';
 import Axios from 'axios'
+import { connect } from 'react-redux'
+import { login, logout } from './redux/actions'
 
 const URL = "http://localhost:2500"
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      keepLoginUser: {}
-    }
+    this.state = {}
   }
 
   componentDidMount() {
@@ -26,10 +28,9 @@ class App extends React.Component {
     if (token) {
       Axios.get(URL + `/users?id=${token}`)
         .then((res) => {
-          // localStorage.setItem('loginRunner', res.data[0].id)
+          localStorage.setItem('loginRunner', res.data[0].id)
           console.log(res.data)
-          this.setState({ keepLoginUser: res.data[0] })
-          // location.reload();
+          this.props.login(res.data[0])
         })
         .catch((err) => {
           console.log(err)
@@ -38,16 +39,25 @@ class App extends React.Component {
   }
 
   render() {
+    // console.log("test", this.props)
     return (
       <div>
-        <NavbarComponent data={this.state.keepLoginUser} />
+        <NavbarComponent data={this.props.user} funcLogout={this.props.logout} />
         <Route path="/" component={Homepage} exact />
         <Route path="/product" component={Productpage} />
         <Route path="/profile" component={Profilepage} />
         <Route path="/login" component={Loginpage} />
+        <Route path="/register" component={Registerpage} />
       </div>
     );
   }
 }
 
-export default App;
+const mapToProps = (state) => {
+  console.log("Global", state)
+  return {
+    user: state.authReducer
+  }
+}
+
+export default connect(mapToProps, { login, logout })(App);

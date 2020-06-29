@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import Reducer from './redux/reducers'
 
+const storeReducer = createStore(Reducer)
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <Provider store={storeReducer}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
   , document.getElementById('root')
 );
 

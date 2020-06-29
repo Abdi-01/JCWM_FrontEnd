@@ -80,7 +80,7 @@ export default (props) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    console.log('sukse',props.data)
+
     return (
         <div className={classes.root}>
             <AppBar position="static" style={{ backgroundColor: "#f1f2f6" }}>
@@ -130,16 +130,64 @@ export default (props) => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>
-                                    <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
-                                        Login
-                                    </Link>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                    <Link to="/register" style={{ textDecoration: 'none', color: "#404146" }}>
-                                        Register
-                                    </Link>
-                                </MenuItem>
+                                {props.data.id > 0
+                                    ?
+                                    props.data.role === "user"
+                                        ?
+                                        <>
+                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                                <MenuItem onClick={handleClose}>
+                                                    Profile
+                                                </MenuItem>
+                                            </Link>
+                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                                <MenuItem onClick={handleClose}>
+                                                    Cart
+                                                </MenuItem>
+                                            </Link>
+                                            <Link style={{ textDecoration: 'none', color: "#404146" }}>
+                                                <MenuItem onClick={props.funcLogout}>
+                                                    Logout
+                                                </MenuItem>
+                                            </Link>
+                                        </>
+                                        :
+                                        <>
+                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                                <MenuItem onClick={handleClose}>
+                                                    Product Management
+                                                </MenuItem>
+                                            </Link>
+                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                                <MenuItem onClick={handleClose}>
+                                                    Account Management
+                                                </MenuItem>
+                                            </Link>
+                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                                <MenuItem onClick={handleClose}>
+                                                    Transaction Management
+                                                </MenuItem>
+                                            </Link>
+                                            <Link style={{ textDecoration: 'none', color: "#404146" }}>
+                                                <MenuItem onClick={props.funcLogout}>
+                                                    Logout
+                                                </MenuItem>
+                                            </Link>
+                                        </>
+                                    :
+                                    <>
+                                        <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                            <MenuItem onClick={handleClose}>
+                                                Login
+                                            </MenuItem>
+                                        </Link>
+                                        <Link to="/register" style={{ textDecoration: 'none', color: "#404146" }}>
+                                            <MenuItem onClick={handleClose}>
+                                                Register
+                                            </MenuItem>
+                                        </Link>
+                                    </>
+                                }
                             </Menu>
                         </div>
                     </div>

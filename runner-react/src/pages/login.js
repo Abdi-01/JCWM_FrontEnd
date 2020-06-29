@@ -6,6 +6,8 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { login } from '../redux/actions'
 
 const URL = "http://localhost:2500"
 class Login extends React.Component {
@@ -33,9 +35,8 @@ class Login extends React.Component {
         Axios.get(URL + `/users?username=${username}&password=${password}`)
             .then((res) => {
                 localStorage.setItem('loginRunner', res.data[0].id)
+                this.props.login(res.data[0])
                 console.log("satu")
-                this.setState({ redirect: true })
-                window.location.reload();
             })
             .catch((err) => {
                 console.log(err)
@@ -76,7 +77,7 @@ class Login extends React.Component {
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
-                                                aria-label="toggle password visibility"
+                                                disabled
                                             // onMouseDown={handleMouseDownPassword}
                                             >
                                                 <AccountCircle />
@@ -106,8 +107,7 @@ class Login extends React.Component {
                                 />
                             </FormControl>
                             <span style={{ textAlign: 'right' }}>Forget password ?</span>
-                            <button onClick={this.onBtLogin}>Login</button>
-                            {/* <Button
+                            <Button
                                 style={{ marginTop: '2%' }}
                                 variant="contained"
                                 color="default"
@@ -116,7 +116,7 @@ class Login extends React.Component {
                                 startIcon={<MeetingRoomIcon />}
                             >
                                 Login
-                            </Button> */}
+                            </Button>
                         </fieldset>
                     </Paper>
                 </div>
@@ -125,4 +125,5 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+
+export default connect(null, { login })(Login);
