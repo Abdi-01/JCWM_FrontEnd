@@ -40,7 +40,7 @@ class App extends React.Component {
     }
   }
 
-  onBtLogout=()=>{
+  onBtLogout = () => {
     localStorage.removeItem('loginRunner')
     this.props.logout()
   }
@@ -51,26 +51,21 @@ class App extends React.Component {
       <div>
         {this.props.user.role === "user"
           ?
-          <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#f1f2f6" />
+          <>
+            <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#f1f2f6" />
+            <Route path="/cart" component={CartPage} />
+          </>
           :
-          <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#3498db" />
+          <>
+            <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#3498db" />
+            <Route path="/adminDashboard" component={AdminPage} />
+          </>
         }
         <Route path="/" component={Homepage} exact />
         <Route path="/login" component={Loginpage} />
         <Route path="/register" component={Registerpage} />
         <Route path="/product" component={Productpage} />
         <Route path="/productdetail" component={Productdetail} />
-        {this.props.user.role === "user"
-          ?
-          <>
-            <Route path="/cart" component={CartPage} />
-          </>
-          :
-          <>
-            <Route path="/adminDashboard" component={AdminPage} />
-            {/* <Route path="/transactionReport" component={Productdetail} /> */}
-          </>
-        }
       </div>
     );
   }
