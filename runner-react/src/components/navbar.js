@@ -83,7 +83,7 @@ export default (props) => {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static" style={{ backgroundColor: "#f1f2f6" }}>
+            <AppBar position="static" style={{ backgroundColor: props.bgColor }}>
                 <Toolbar>
                     <div style={{ display: 'flex', width: "100%", height: '100%' }}>
                         <img src={require('../assets/images/logoA.png')} width="4%" />

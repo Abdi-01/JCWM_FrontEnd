@@ -11,6 +11,7 @@ import Axios from 'axios'
 import { connect } from 'react-redux'
 import { login, logout } from './redux/actions'
 import CartPage from './pages/cartpage';
+import AdminPage from './pages/adminDashboard';
 
 const URL = "http://localhost:2500"
 
@@ -39,17 +40,37 @@ class App extends React.Component {
     }
   }
 
+  onBtLogout=()=>{
+    localStorage.removeItem('loginRunner')
+    this.props.logout()
+  }
+
   render() {
     // console.log("test", this.props)
     return (
       <div>
-        <NavbarComponent data={this.props.user} funcLogout={this.props.logout}/>
+        {this.props.user.role === "user"
+          ?
+          <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#f1f2f6" />
+          :
+          <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#3498db" />
+        }
         <Route path="/" component={Homepage} exact />
-        <Route path="/product" component={Productpage} />
-        <Route path="/cart" component={CartPage} />
         <Route path="/login" component={Loginpage} />
         <Route path="/register" component={Registerpage} />
+        <Route path="/product" component={Productpage} />
         <Route path="/productdetail" component={Productdetail} />
+        {this.props.user.role === "user"
+          ?
+          <>
+            <Route path="/cart" component={CartPage} />
+          </>
+          :
+          <>
+            <Route path="/adminDashboard" component={AdminPage} />
+            {/* <Route path="/transactionReport" component={Productdetail} /> */}
+          </>
+        }
       </div>
     );
   }
