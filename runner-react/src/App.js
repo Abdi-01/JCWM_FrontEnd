@@ -46,19 +46,18 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log("test", this.props)
     return (
       <div>
-        {this.props.user.role === "user"
+        {this.props.user.role === "admin"
           ?
-          <>
-            <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#f1f2f6" />
-            <Route path="/cart" component={CartPage} />
-          </>
-          :
           <>
             <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#3498db" />
             <Route path="/adminDashboard" component={AdminPage} />
+          </>
+          :
+          <>
+            <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#f1f2f6" />
+            <Route path="/cart" component={CartPage} />
           </>
         }
         <Route path="/" component={Homepage} exact />
