@@ -559,6 +559,22 @@
           "size": 39,
           "qty": "2",
           "total": 3000000
+        },
+        {
+          "name": "NIKE KYRIE 6",
+          "brand": "NIKE",
+          "color": "WHITE/BLUE FURY-OPTI YELLOW-DIGITAL PINK",
+          "size": 39,
+          "qty": "3",
+          "total": 5340000
+        },
+        {
+          "name": "JORDAN AIR JORDAN 14 RETRO",
+          "brand": "JORDAN",
+          "color": "BLACK/GYM RED-WHITE-OFF WHITE",
+          "size": 40,
+          "qty": "5",
+          "total": 13400000
         }
       ]
     },
