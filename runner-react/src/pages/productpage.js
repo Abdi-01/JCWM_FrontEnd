@@ -27,17 +27,19 @@ class Productpage extends React.Component {
 
     printCard = () => {
         return this.state.dbProducts.map((item, index) => {
-            return <CardComp name={item.name} price={item.price} image={item.images[1]} />
+            return <CardComp id={item.id} name={item.name} price={item.price} image={item.images[1]} />
         })
     }
     render() {
         return (
-            <div>
-                <h1>
-                    ini PRODUCTPAGE
+            <div >
+                <h1 style={{ rotate: "90deg", position: 'fixed', top: "50%", left: '-7%' }}>
+                    Our Collection Now
                 </h1>
-                <div className="container" style={{ margin: 'auto', width: '80vw', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                    {this.printCard()}
+                <div style={{ marginTop: '3%' }}>
+                    <div style={{ margin: 'auto', width: '80vw', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                        {this.printCard()}
+                    </div>
                 </div>
             </div>
         );

@@ -7,11 +7,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
     root: {
-        width:"30%",
-        marginBottom:'1%'
+        width: "30%",
+        marginBottom: '1%'
         // margin :"0.6% 0.6% 0.6% 0.6%"
     },
 });
@@ -29,7 +30,7 @@ export default (props) => {
                     title="Contemplative Reptile"
                 />
                 <CardContent >
-                    <Typography style={{height:'10vh'}} gutterBottom variant="h5" component="h4">
+                    <Typography style={{ height: '10vh' }} gutterBottom variant="h5" component="h4">
                         {props.name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
@@ -41,9 +42,11 @@ export default (props) => {
                 <Button size="small" color="primary">
                     Share
                 </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
+                <Link to={`/productdetail?id=${props.id}`}>
+                    <Button size="small" color="primary">
+                        Detail
+                     </Button>
+                </Link>
             </CardActions>
         </Card>
     );

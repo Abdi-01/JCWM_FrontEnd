@@ -526,21 +526,49 @@
       "username": "user",
       "email": "user@gmail.com",
       "password": "user",
-      "role": "user"
+      "role": "user",
+      "cart": []
     },
     {
       "username": "al",
       "email": "al@mail.com",
       "password": "12345",
       "role": "user",
-      "id": 3
+      "id": 3,
+      "cart": [
+        {
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "brand": "JORDAN",
+          "color": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "size": 40,
+          "qty": 2,
+          "total": 3000000
+        },
+        {
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "brand": "JORDAN",
+          "color": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "size": 39,
+          "qty": 1,
+          "total": 1500000
+        },
+        {
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "brand": "JORDAN",
+          "color": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "size": 39,
+          "qty": "2",
+          "total": 3000000
+        }
+      ]
     },
     {
       "username": "ali",
       "email": "ali@mail.com",
       "password": "aku4l1$%",
       "role": "user",
-      "id": 4
+      "id": 4,
+      "cart": []
     }
   ]
 }

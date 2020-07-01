@@ -18,11 +18,13 @@ class Homepage extends React.Component {
     }
 
     getSlider = () => {
+        let d = false
         Axios.get(URL + "/slider")
             .then((res) => {
                 console.log(res.data)
                 this.setState({ slideImage: res.data })
                 this.props.getSlider(res.data)
+                d = true
             }).catch((err) => {
                 console.log("Error BOS !", err)
             })

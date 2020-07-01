@@ -2,7 +2,8 @@ const INITIAL_STATE = {
     id: null,
     username: null,
     email: null,
-    role: null
+    role: null,
+    cart:[]
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -13,7 +14,8 @@ export default (state = INITIAL_STATE, action) => {
                 id: action.payload.id,
                 username: action.payload.username,
                 email: action.payload.email,
-                role: action.payload.role
+                role: action.payload.role,
+                cart: action.payload.cart
             }
         case "LOGOUT":
             return INITIAL_STATE
