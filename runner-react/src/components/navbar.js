@@ -142,7 +142,7 @@ export default (props) => {
                                                     Profile
                                                 </MenuItem>
                                             </Link>
-                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                            <Link to="/cart" style={{ textDecoration: 'none', color: "#404146" }}>
                                                 <MenuItem onClick={handleClose}>
                                                     Cart
                                                 </MenuItem>
