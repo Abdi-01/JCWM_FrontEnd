@@ -519,7 +519,8 @@
       "username": "admin",
       "email": "admin@shoes.com",
       "password": "admin",
-      "role": "admin"
+      "role": "admin",
+      "cart": []
     },
     {
       "id": 2,
