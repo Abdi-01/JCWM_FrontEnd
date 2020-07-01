@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Menu, MenuItem, Avatar,
     AppBar, Toolbar, IconButton, Typography, InputBase
-    , fade, makeStyles
+    , fade, makeStyles, Badge
 } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -118,7 +118,9 @@ export default (props) => {
                         />
                     </div>
                     <div style={{ display: 'flex' }}>
-                        <CartIcon style={{ color: "#404146", margin: 'auto', marginLeft: '2vw' }} />
+                        <Badge badgeContent={props.data.cart.length} style={{ margin: 'auto' }} color="primary">
+                            <CartIcon style={{ color: "#404146", marginLeft: '1vw' }} />
+                        </Badge>
                         <div>
                             <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                 {props.data.id > 0 ? <Avatar alt="Travis Howard" src={`https://api.adorable.io/avatars/285/${props.data.username}.png`} /> : <AccountCircleIcon />}

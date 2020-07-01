@@ -43,7 +43,7 @@ class App extends React.Component {
     // console.log("test", this.props)
     return (
       <div>
-        <NavbarComponent data={this.props.user} funcLogout={this.props.logout} />
+        <NavbarComponent data={this.props.user} funcLogout={this.props.logout}/>
         <Route path="/" component={Homepage} exact />
         <Route path="/product" component={Productpage} />
         <Route path="/cart" component={CartPage} />
