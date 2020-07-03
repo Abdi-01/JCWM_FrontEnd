@@ -1,10 +1,12 @@
 import React from 'react';
 import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableFooter, TextField, Typography } from '@material-ui/core';
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import { login } from '../redux/actions'
 import Axios from 'axios'
 
 const URL = "http://localhost:2500"
+let count = 0
 class CartPage extends React.Component {
     constructor(props) {
         super(props);
@@ -62,21 +64,38 @@ class CartPage extends React.Component {
                 }
             })
         })
+
+        Axios.post(URL + `/userTransaction`, { userID: this.props.id, date: new Date().toLocaleString(), total: count, cart: tempCart })
+            .then((res) => {
+                Axios.patch(URL + `/users/${this.props.id}`, { cart: [] })
+                    .then((res) => {
+                        Axios.get(URL + `/users?id=${this.props.id}`)
+                            .then((res) => {
+                                localStorage.setItem('loginRunner', res.data[0].id)
+                                this.props.login(res.data[0])
+                                this.setState({ redirect: true })
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     handleStock = (index, idx) => {
-        let tempStocks = this.state.dbProducts[index].stock
-        let tempCart = this.props.cart[idx]
+        let tempStocks = this.state.dbProducts[index].stock//array of object
+        let tempCart = this.props.cart[idx]//object
         tempStocks.forEach((item, index) => {
             if (item.code == tempCart.size) {
-                console.log(item.code, tempCart.size)
-                console.log(item.total, tempCart.qty)
                 item.total -= tempCart.qty
-                console.log(item.total)
             }
         });
-        console.log(tempStocks)
-        console.log(this.state.dbProducts[index].id)
         Axios.patch(URL + `/products/${this.state.dbProducts[index].id}`, { stock: tempStocks })
             .then((res) => {
                 console.log("sukses")
@@ -85,6 +104,7 @@ class CartPage extends React.Component {
                 console.log(err)
             })
     }
+
     printData = () => {
         return this.props.cart.map((item, index) => {
             return (
@@ -109,10 +129,14 @@ class CartPage extends React.Component {
     }
 
     render() {
-        let count = 0
+        count = 0
         this.props.cart.map((item, index) => {
             count += item.total
         })
+        if (this.state.redirect) {
+            console.log("dua")
+            return <Redirect to="/" />
+        }
         // console.log("total", count)
         return (
             <div>

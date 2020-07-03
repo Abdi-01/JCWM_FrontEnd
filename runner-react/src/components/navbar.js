@@ -81,6 +81,11 @@ export default (props) => {
         setAnchorEl(null);
     };
 
+    let count = 0
+    props.data.cart.map((item, index) => {
+        count += item.total
+    })
+
     return (
         <div className={classes.root}>
             <AppBar position="static" style={{ backgroundColor: props.bgColor }}>
@@ -118,6 +123,7 @@ export default (props) => {
                         />
                     </div>
                     <div style={{ display: 'flex' }}>
+                        <Typography style={{ color: '#404146', margin: 'auto', width: '10vw', marginLeft: '1vw' }}>IDR. {count.toLocaleString()}</Typography>
                         <Badge badgeContent={props.data.cart.length} style={{ margin: 'auto' }} color="primary">
                             <CartIcon style={{ color: "#404146", marginLeft: '1vw' }} />
                         </Badge>
@@ -155,7 +161,7 @@ export default (props) => {
                                         </>
                                         :
                                         <>
-                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                            <Link to="/adminDashboard" style={{ textDecoration: 'none', color: "#404146" }}>
                                                 <MenuItem onClick={handleClose}>
                                                     Product Management
                                                 </MenuItem>
@@ -165,7 +171,7 @@ export default (props) => {
                                                     Account Management
                                                 </MenuItem>
                                             </Link>
-                                            <Link to="/login" style={{ textDecoration: 'none', color: "#404146" }}>
+                                            <Link to="/adminTransaction" style={{ textDecoration: 'none', color: "#404146" }}>
                                                 <MenuItem onClick={handleClose}>
                                                     Transaction Management
                                                 </MenuItem>
