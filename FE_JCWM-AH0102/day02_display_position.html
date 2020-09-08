@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Membuat variable didalam CSS */
+        :root {
+            --merah: red;
+            --biru: blue;
+            --lebar: 400px;
+        }
+
+        /* Tag selector */
+        h1 {
+            color: var(--merah);
+            background-color: var(--biru);
+        }
+
+        div {
+            width: var(--lebar);
+        }
+
+        /* Child Selector */
+        div>p {
+            background-color: coral;
+        }
+
+        div>p>span {
+            color: blue;
+        }
+
+        /* pseudo-class HOVER : merubah style ketika cursor berada diatas sebuah elemen */
+        div>p>span:hover {
+            color: red;
+        }
+
+        /* pseudo-class FOCUS : merubah style ketika cursor berada pada element, biasanya pada tag input */
+        input:focus {
+            background-color: blueviolet;
+        }
+
+        input:active {
+            background-color: cyan;
+        }
+
+        input::after {
+            content: "Nama ";
+        }
+
+        /* div>h2 {
+            font-weight: bolder;
+            color: chartreuse;
+        } */
+
+        /* Descendant Selector : mengakses semua tag child yang berada didalam tag parent yg dipilih */
+        #header h2 {
+            color: brown;
+        }
+
+        #test::after {
+            content: " ";
+            width: 20px;
+            height: 20px;
+            background-color: brown;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Selamat Belajar</h1>
+        <h2>Di Kelas Front-End</h2>
+        <span>
+            <h2>JCWM-AH</h2>
+        </span>
+    </div>
+    <div>
+        <h2>Materi Layout</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book.<span>It has survived not only five centuries</span> , but also
+            the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+    <input type="text" placeholder="input data">
+    <div id="test">
+        Hello,
+    </div>
+</body>
+
+</html>

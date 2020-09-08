@@ -1,0 +1,22 @@
+/* Tag Selector : melakukan styling berdasrkan nama tag */
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+h1{
+    color: coral;
+}
+
+
+/* Class Selector */
+.warna-heading{
+    background-color: aqua;
+}
+
+/* ID Selector */
+#paragraph{
+    color: brown;
+}
