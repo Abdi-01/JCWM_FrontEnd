@@ -27,6 +27,7 @@ class Home extends Component {
         this.getData()
     }
 
+    
     // Untuk membuat fungsi direact pastikan menggunakan arrow function
     /*fungsi getData dengan arrow function agar bisa dipanggil didalam class component dengan this.getData() dan dapat menjalankan
       property this.state maupun this.setState

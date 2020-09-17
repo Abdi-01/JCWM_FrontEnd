@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TableFooter, TextField, Typography } from '@material-ui/core';
 import { connect } from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { login } from '../redux/actions'
 import Axios from 'axios'
 
@@ -11,7 +11,7 @@ class CartPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dbCart: [], selectedID: null, dbProducts: []
+            qty: 0, total: 0, price: 0, selectedIdx: null, dbProducts: []
         }
     }
 
@@ -42,7 +42,6 @@ class CartPage extends React.Component {
                         localStorage.setItem('loginRunner', res.data[0].id)
                         console.log(res.data)
                         this.props.login(res.data[0])
-                        this.setState({ redirect: true })
                     })
                     .catch((err) => {
                         console.log(err)
@@ -105,6 +104,52 @@ class CartPage extends React.Component {
             })
     }
 
+    componentDidUpdate() {
+        for (let i = 0; i < this.props.cart.length; i++) {
+            console.log(this.props.cart[i].qty)
+        }
+    }
+
+    onBtSave = () => {
+        let tempCart = this.props.cart
+        tempCart[this.state.selectedIdx].qty = this.state.qty
+        tempCart[this.state.selectedIdx].total = this.state.total
+
+        Axios.patch(URL + `/users/${this.props.id}`, { cart: tempCart })
+            .then((res) => {
+                Axios.get(URL + `/users?id=${this.props.id}`)
+                    .then((res) => {
+                        localStorage.setItem('loginRunner', res.data[0].id)
+                        this.props.login(res.data[0])
+                        this.setState({ selectedIdx: null })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    onBtInc = () => {
+        let count = this.state.qty
+        count++
+        console.log(count)
+
+        this.setState({ qty: count, total: count * this.state.price })
+    }
+
+    onBtDec = () => {
+        let count = this.state.qty
+        count--
+        console.log(count)
+        if (count == 0) {
+            this.onBtDelete(this.state.selectedIdx)
+        }
+        this.setState({ qty: count, total: count * this.state.price })
+    }
+
     printData = () => {
         return this.props.cart.map((item, index) => {
             return (
@@ -112,17 +157,43 @@ class CartPage extends React.Component {
                     <TableCell component="th" scope="row">
                         {index + 1}
                     </TableCell>
+                    <TableCell align="left"><img src={item.image} width="100%" style={{ margin: 'auto' }} /></TableCell>
                     <TableCell align="left">{item.name}</TableCell>
                     <TableCell align="left">{item.brand}</TableCell>
                     <TableCell align="left">{item.color}</TableCell>
                     <TableCell align="left">{item.size}</TableCell>
-                    <TableCell align="left">{item.qty}</TableCell>
-                    <TableCell align="left">IDR. {item.total.toLocaleString()}</TableCell>
-                    <TableCell align="left">
-                        <Button variant="contained" color="secondary" onClick={() => this.onBtDelete(index)}>
-                            Delete
-                        </Button>
-                    </TableCell>
+                    {
+                        this.state.selectedIdx === index ?
+                            <>
+                                <TableCell align="left" >
+                                    <Button color="secondary" onClick={this.onBtDec}>-</Button>
+                                    {this.state.qty}
+                                    <Button color="primary" onClick={this.onBtInc}>+</Button>
+                                </TableCell>
+                                <TableCell align="left">IDR. {this.state.total.toLocaleString()}</TableCell>
+                                <TableCell align="left">
+                                    <Button variant="contained" color="secondary" onClick={() => this.setState({ selectedIdx: null })}>
+                                        No
+                                </Button>
+                                    <Button variant="contained" color="primary" onClick={this.onBtSave}>
+                                        Save
+                                 </Button>
+                                </TableCell>
+                            </>
+                            :
+                            <>
+                                <TableCell align="left">{item.qty}</TableCell>
+                                <TableCell align="left">IDR. {item.total.toLocaleString()}</TableCell>
+                                <TableCell align="left">
+                                    <Button variant="contained" color="secondary" onClick={() => this.onBtDelete(index)}>
+                                        Delete
+                                </Button>
+                                    <Button variant="contained" color="primary" onClick={() => this.setState({ selectedIdx: index, qty: item.qty, total: item.total, price: item.price })}>
+                                        Edit
+                                 </Button>
+                                </TableCell>
+                            </>
+                    }
                 </TableRow>
             )
         })
@@ -137,7 +208,6 @@ class CartPage extends React.Component {
             console.log("dua")
             return <Redirect to="/" />
         }
-        // console.log("total", count)
         return (
             <div>
                 <h1>
@@ -149,6 +219,7 @@ class CartPage extends React.Component {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>No</TableCell>
+                                    <TableCell align="center" style={{ width: '10%' }}>Image</TableCell>
                                     <TableCell align="center">Product Name</TableCell>
                                     <TableCell align="center">Brand</TableCell>
                                     <TableCell align="center">Color</TableCell>
@@ -164,6 +235,7 @@ class CartPage extends React.Component {
                             </TableBody>
                             <TableFooter style={{ backgroundColor: '#404146', color: 'white' }}>
                                 <TableRow>
+                                    <TableCell></TableCell>
                                     <TableCell></TableCell>
                                     <TableCell></TableCell>
                                     <TableCell></TableCell>

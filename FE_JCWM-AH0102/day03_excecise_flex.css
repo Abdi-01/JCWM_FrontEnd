@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container-1{
+    height: 80vh;
+    background-color:grey;
+    margin:auto;
+    display: flex;
+}
+
+p{
+    text-align: justify;
+}
+
+a{
+    text-decoration: none;
+}
+
+.navbar{
+    background-color: #E3F2FD;
+    font-family: 'Roboto', sans-serif;
+    height: 8vh;
+    display: flex;
+}
+
+.navbar>ul{
+    padding: 10px;
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+}
+
+.navbar a{
+    color: #343A40;
+    font-size: larger;
+}
+
+.navbar a:hover{
+    color: darkslateblue;
+}
+
+.right-nav{
+    /* background-color: brown; */
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.right-nav > button,input{
+    height: 50%;
+    border: none;
+    padding: 3px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.right-nav>button{
+    cursor: pointer;
+    width: 60px;
+}
+
+.right-nav >input:active{
+    background-color: gray;
+    color: white;
+}
+
+.right-nav>button:hover{
+    background-color: #0069D9;
+    color: white;
+}
+
+.side-navigation{
+    padding: 20px;
+    flex: 1;
+    order: 3;
+}
+
+.main{
+    flex: 4;
+    padding: 20px;
+    order: 2;
+    overflow: auto;
+}
+
+.submenu-navigation{
+    flex: 1;
+    padding: 20px;
+    order: 1;
+}
+
+.container-2{
+    width: 75vw;
+    margin: 10px auto;
+}
+
+.card-1,.card-2,.card-3,.card-4{
+    padding: 10px;
+}
+
+.card-1{
+    background-color: blueviolet;
+}
+.card-2{
+    background-color: blue;
+}
+.card-3{
+    background-color: red;
+}
+.card-4{
+    background-color: yellow;
+}
+
+
+
+/* Responsive element menggunakan media query */
+@media (min-width:950px){
+    .container-2{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .card-1,.card-2,.card-3,.card-4{
+        width: 20%;
+    }
+
+}
+
+@media(min-width:700px)and (max-width:945px){
+    .container-2{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .card-1,.card-2,.card-3,.card-4{
+        width: 35vw;
+    }
+}

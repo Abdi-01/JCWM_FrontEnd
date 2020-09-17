@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Menu, MenuItem, Avatar,
     AppBar, Toolbar, IconButton, Typography, InputBase
-    , fade, makeStyles, Badge
+    , fade, makeStyles, Badge, Popover, Button, Paper
 } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -67,11 +67,15 @@ const useStyles = makeStyles((theme) => ({
             },
         },
     },
+    paper: {
+        padding: theme.spacing(1),
+    }
 }));
 
 export default (props) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [getPopover, setPopover] = React.useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -85,6 +89,17 @@ export default (props) => {
     props.data.cart.map((item, index) => {
         count += item.total
     })
+
+    const handlePopoverOpen = (event) => {
+        setPopover(event.currentTarget);
+    };
+
+    const handlePopoverClose = () => {
+        setPopover(null);
+    };
+
+    const open = Boolean(getPopover);
+    const id = open ? 'simple-popover' : undefined;
 
     return (
         <div className={classes.root}>
@@ -124,9 +139,54 @@ export default (props) => {
                     </div>
                     <div style={{ display: 'flex' }}>
                         <Typography style={{ color: '#404146', margin: 'auto', width: '10vw', marginLeft: '1vw' }}>IDR. {count.toLocaleString()}</Typography>
-                        <Badge badgeContent={props.data.cart.length} style={{ margin: 'auto' }} color="primary">
-                            <CartIcon style={{ color: "#404146", marginLeft: '1vw' }} />
-                        </Badge>
+                        <IconButton aria-describedby={id} variant="contained" color="primary" onClick={handlePopoverOpen} style={{ marginRight: '5%' }}>
+                            <Badge badgeContent={props.data.cart.length} style={{ margin: 'auto' }} color="primary">
+                                <CartIcon on style={{ color: "#404146"}} />
+                            </Badge>
+                        </IconButton>
+                        <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={getPopover}
+                            onClose={handlePopoverClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            // style={{ width: '500px' }}
+                        >
+                            {props.data.cart.length > 0 ?
+                                <>
+                                    {props.data.cart.map((item, index) => {
+                                        return (
+                                            // <Paper>
+                                            <div style={{ display: 'flex', margin: '16px',width: '20vw' }}>
+                                                <div style={{ width: '20%' }}>
+                                                    <img src={item.image} width="100%" style={{ margin: 'auto' }} />
+                                                </div>
+                                                <div>
+                                                    <ul style={{ listStyleType: 'none', fontSize: '12px' }}>
+                                                        <li>{item.name}</li>
+                                                        <li>IDR. {item.price.toLocaleString()}</li>
+                                                        <li>Qty : {item.qty}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            // </Paper>
+                                        )
+                                    })}
+                                    <Link to="/cart">
+                                        <Button style={{width:'100%',backgroundColor:'#0376AB',color:'white'}} onClick={handlePopoverClose}>Go To Cart</Button>
+                                    </Link>
+                                </>
+                                :
+                                <Typography>Cart Empty</Typography>
+                            }
+                        </Popover>
                         <div>
                             <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                 {props.data.id > 0 ? <Avatar alt="Travis Howard" src={`https://api.adorable.io/avatars/285/${props.data.username}.png`} /> : <AccountCircleIcon />}

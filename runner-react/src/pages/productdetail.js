@@ -37,11 +37,13 @@ class Productdetail extends React.Component {
         let { productDetail, chooseSize } = this.state
         console.log("Buy Qty :", this.buyQty.value)
         let objCart = {
+            image: productDetail.images[0],
             name: productDetail.name,
             brand: productDetail.brand,
             color: productDetail.colour,
             size: chooseSize,
-            qty: this.buyQty.value,
+            price: productDetail.price,
+            qty: parseInt(this.buyQty.value),
             total: parseInt(this.buyQty.value) * productDetail.price
         }
         let tempCart = this.props.cart
@@ -66,6 +68,10 @@ class Productdetail extends React.Component {
             .catch((err) => {
                 console.log(err)
             })
+    }
+
+    stateData = (item,index) => {
+        this.setState({ stockSize: item.total, selectedIndex: index, chooseSize: item.code })
     }
 
     render() {
@@ -125,10 +131,14 @@ class Productdetail extends React.Component {
                         <div style={{ display: 'flex', justifyContent: 'center', margin: 'auto', width: '80%', marginTop: '3%' }}>
                             {
                                 productDetail.id > 0 ? productDetail.stock.map((item, index) => {
-                                    if (index == this.state.selectedIndex) {
-                                        return <Button variant="outlined" style={{ backgroundColor: 'orange' }} disabled>{item.code}</Button>
+                                    if (item.total > 5) {
+                                        if (index == this.state.selectedIndex) {
+                                            return <Button variant="outlined" style={{ backgroundColor: 'orange' }} disabled>{item.code}</Button>
+                                        } else {
+                                            return <Button variant="outlined" onClick={()=>this.stateData(item,index)}>{item.code}</Button>
+                                        }
                                     } else {
-                                        return <Button variant="outlined" onClick={() => this.setState({ stockSize: item.total, selectedIndex: index, chooseSize: item.code })}>{item.code}</Button>
+                                        return <Button variant="outlined" style={{ backgroundColor: 'gray' }} >{item.code}</Button>
                                     }
                                 }) : <></>
                             }
@@ -137,9 +147,9 @@ class Productdetail extends React.Component {
                     </div>
                     <div style={{ display: 'flex', position: 'absolute', height: '8%', width: '48%', bottom: "10.8%", right: "10%" }}>
                         <Typography style={{ fontSize: 40, fontWeight: 'bold' }}>IDR. {productDetail.price > 0 ? productDetail.price.toLocaleString() : 0}</Typography>
-                        <TextField id="outlined-basic" label="Buy qty : " inputRef={(value) => this.buyQty = value} variant="outlined" style={{ position: 'absolute', right: "14%", width: "12%" }} />
+                        <TextField id="outlined-basic" label="Buy qty : " inputRef={(value) => this.buyQty = value} variant="outlined" style={{ position: 'absolute', right: "18%", width: "12%" }} />
                         <Button variant="contained" style={{ backgroundColor: '#404146', color: 'white', height: '100%', position: 'absolute', right: 0 }} disableElevation onClick={this.onBtBuy}>
-                            Primary
+                            Add To Cart
                         </Button>
                     </div>
                 </Paper>

@@ -1,0 +1,12 @@
+{
+    "staff": [
+        {
+            "id": 1,
+            "nama": "Abdi",
+            "phone": "089647858545",
+            "email": "abdi@mail.com",
+            "password": "1234",
+            "posisi": "Programmer"
+        }
+    ]
+}

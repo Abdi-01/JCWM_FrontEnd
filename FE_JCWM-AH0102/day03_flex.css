@@ -1,0 +1,27 @@
+.container{
+    width: 400px;
+    height: 400px;
+    background-color: darkgray;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.box1,.box2,.box3,.box4{
+ width: 20%;
+ height: 20%;
+}
+
+.box1{
+    background-color: red;
+}
+.box2{
+    background-color: blue;
+}
+.box3{
+    background-color: green;
+}
+.box4{
+    background-color: yellow;
+}

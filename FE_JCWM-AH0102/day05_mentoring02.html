@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Blog | AL</title>
+    <link rel="stylesheet" href="./day05_mentoring02.css">
+    <!-- Material Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</head>
+
+<body
+    style="background-image: url(https://images.unsplash.com/photo-1516541196182-6bdb0516ed27?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80);background-repeat: no-repeat;background-size: cover;">
+    <div class="container">
+        <header class="py-3" style="border-bottom: 1px solid gray;">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4">
+                    <a class="pt-1">Subscribe</a>
+                </div>
+                <div class="col-4 text-center">
+                    <h1>Tribun News</h1>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <span class="material-icons mr-2">
+                        search
+                    </span>
+                    <button class="btn btn-outline-secondary btn-sm">Sign Up</button>
+                </div>
+            </div>
+        </header>
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex flex-nowrap justify-content-between" style="overflow: auto;">
+                <a class="nav-link text-muted" href="#">World</a>
+                <a class="nav-link text-muted" href="#">U.S.</a>
+                <a class="nav-link text-muted" href="#">Technology</a>
+                <a class="nav-link text-muted" href="#">Design</a>
+                <a class="nav-link text-muted" href="#">Culture</a>
+                <a class="nav-link text-muted" href="#">Business</a>
+                <a class="nav-link text-muted" href="#">Politics</a>
+                <a class="nav-link text-muted" href="#">Science</a>
+                <a class="nav-link text-muted" href="#">Health</a>
+                <a class="nav-link text-muted" href="#">Style</a>
+            </nav>
+        </div>
+        <div id="carousel-home" class="carousel slide" data-ride="carousel"
+            style="background-color: #777777;color: white;height: 41vh;">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-home" data-slide="0" class="active"></li>
+                <li data-target="#carousel-home" data-slide="1" class="active"></li>
+                <li data-target="#carousel-home" data-slide="2" class="active"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active"
+                    style="background-image: url(https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);">
+                    <div class="jumbotron p-3 p-md-5 rounded bg-transparent text-white">
+                        <h1 class="display-4 font-italic font-weight-bold">Development With React JS</h1>
+                        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly
+                            and
+                            efficiently about what's most interesting in this post's contents.</p>
+                        <a href="#" class="text-white font-weight-bold">Continue Reading</a>
+                    </div>
+                </div>
+                <div class="carousel-item"
+                    style="background-repeat: no-repeat;background-size: cover; background-image: url(https://images.unsplash.com/flagged/photo-1573823448235-3e7ded467ad3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60);">
+                    <div class="jumbotron p-3 p-md-5 rounded bg-transparent text-white">
+                        <h1 class="display-4 font-italic font-weight-bold">Corona-Virus Vaccine</h1>
+                        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly
+                            and
+                            efficiently about what's most interesting in this post's contents.</p>
+                        <a href="#" class="text-white font-weight-bold">Continue Reading</a>
+                    </div>
+                </div>
+
+                <div class="carousel-item"
+                    style="background-repeat: no-repeat;background-size: cover; background-image: url(https://images.unsplash.com/photo-1559067096-49ebca3406aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80);">
+                    <div class="jumbotron p-3 p-md-5 rounded bg-transparent text-white">
+                        <h1 class="display-4 font-italic font-weight-bold">Investment Important</h1>
+                        <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly
+                            and
+                            efficiently about what's most interesting in this post's contents.</p>
+                        <a href="#" class="text-white font-weight-bold">Continue Reading</a>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel-home" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-home" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-6">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="card-title font-weight-bold">World</h4>
+                                <h5 class="card-title">Featured post</h5>
+                                <p class="card-text"><small class="text-muted">Nov 12</small></p>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content.</p>
+                                <a href="#">Continue Reading</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none d-md-block">
+                            <img src="https://images.unsplash.com/photo-1599912798269-f7175e55d94b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
+                                height="100%" alt="..." class="card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="card-title font-weight-bold">World</h4>
+                                <h5 class="card-title">Featured post</h5>
+                                <p class="card-text"><small class="text-muted">Nov 12</small></p>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content.</p>
+                                <a href="#">Continue Reading</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none d-md-block">
+                            <img src="https://images.unsplash.com/photo-1599912798269-f7175e55d94b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
+                                height="100%" alt="..." class="card-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <h3 class="pb-3 mb-4 font-italic border-bottom">From the Firehose</h3>
+                <div>
+                    <h2>Development With React JS</h2>
+                    <p class="text-muted">January 1, 2014 by <a href="#">Mark</a> </p>
+                    <p>This blog post shows a few different types of content that's supported and styled with Bootstrap.
+                        Basic typography, images, and code are all supported.</p>
+                    <hr>
+                    <p><img src="https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"> Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus
+                        mus. Aenean eu
+                        leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est
+                        at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+                    <p>Curabitur blandit tempus porttitor. <strong> Nullam quis risus eget urna mollis</strong> ornare
+                        vel eu leo. Nullam
+                        id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p>Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum.
+                        Aenean lacinia bibendum nulla sed consectetur.</p>
+                    <h3>Heading</h3>
+                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non
+                        commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
+                        porta ac consectetur ac, vestibulum at eros.</p>
+                    <h3>Sub-heading</h3>
+                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                    <code>Example Code</code>
+                    <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.
+                        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+                    <h3>Sub-heading</h3>
+                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean
+                        lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
+                        dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit
+                        amet risus.</p>
+                    <ul class="ml-5">
+                        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
+                        <li>Donec id elit non mi porta gravida at eget metus.</li>
+                        <li>Nulla vitae elit libero, a pharetra augue.</li>
+                    </ul>
+                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+                    </p>
+                    <ol class="ml-5">
+                        <li>Vestibulum id ligula porta felis euismod semper.</li>
+                        <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
+                        <li>Vestibulum id ligula porta felis euismod semper.</li>
+                    </ol>
+                    <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 mb-3 bg-light rounded">
+                    <h3 class="font-italic">
+                        About
+                    </h3>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi necessitatibus natus
+                        quisquam
+                        veritatis voluptatem accusamus illum.</p>
+                </div>
+                <div class="p-3">
+                    <h4 class="font-italic">Archives</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#">January 2020</a></li>
+                        <li><a href="#">February 2020</a></li>
+                        <li><a href="#">March 2020</a></li>
+                        <li><a href="#">April 2020</a></li>
+                        <li><a href="#">May 2020</a></li>
+                        <li><a href="#">June 2020</a></li>
+                        <li><a href="#">July 2020</a></li>
+                        <li><a href="#">August 2020</a></li>
+                        <li><a href="#">September 2020</a></li>
+                        <li><a href="#">October 2020</a></li>
+                        <li><a href="#">Desember 2020</a></li>
+                    </ul>
+                </div>
+                <div class="p-3">
+                    <h4 class="font-italic">Elsewhere</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#">Github</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Medium</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <h3 style="float: left;">Tribun News</h3>
+            <ul class="d-flex mr-auto justify-content-end" style="list-style: none;">
+                <li class="nav-item text-muted">
+                    <a class="nav-link text-muted" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-muted" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-muted" href="#">Setting</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

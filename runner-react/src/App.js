@@ -12,6 +12,8 @@ import { connect } from 'react-redux'
 import { login, logout } from './redux/actions'
 import CartPage from './pages/cartpage';
 import AdminPage from './pages/adminDashboard';
+import AdminTransPage from './pages/adminTransaction';
+import ProfilePage from './pages/profile';
 
 const URL = "http://localhost:2500"
 
@@ -53,6 +55,7 @@ class App extends React.Component {
           <>
             <NavbarComponent data={this.props.user} funcLogout={this.onBtLogout} bgColor="#3498db" />
             <Route path="/adminDashboard" component={AdminPage} />
+            <Route path="/adminTransaction" component={AdminTransPage} />
           </>
           :
           <>
@@ -65,6 +68,7 @@ class App extends React.Component {
         <Route path="/register" component={Registerpage} />
         <Route path="/product" component={Productpage} />
         <Route path="/productdetail" component={Productdetail} />
+        <Route path="/profile" component={ProfilePage} />
       </div>
     );
   }

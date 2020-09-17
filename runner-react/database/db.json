@@ -12,7 +12,7 @@
       "stock": [
         {
           "code": 38,
-          "total": 10
+          "total": 8
         },
         {
           "code": 39,
@@ -56,7 +56,7 @@
         },
         {
           "code": 39,
-          "total": 17
+          "total": 11
         },
         {
           "code": 40,
@@ -68,7 +68,7 @@
         },
         {
           "code": 42,
-          "total": 7
+          "total": 5
         }
       ],
       "images": [
@@ -96,7 +96,7 @@
         },
         {
           "code": 39,
-          "total": 7
+          "total": 1
         },
         {
           "code": 40,
@@ -104,7 +104,7 @@
         },
         {
           "code": 41,
-          "total": 5
+          "total": 3
         },
         {
           "code": 42,
@@ -140,7 +140,7 @@
         },
         {
           "code": 40,
-          "total": 15
+          "total": 5
         },
         {
           "code": 41,
@@ -420,7 +420,7 @@
         },
         {
           "code": 40,
-          "total": 2
+          "total": 1
         },
         {
           "code": 41,
@@ -538,36 +538,24 @@
       "id": 3,
       "cart": [
         {
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/JORDAN_WESTBROOK_ONE_TAKE-WHITE_WHITE_BLACK_RAGE_GREEN-1.jpg",
           "name": "JORDAN WESTBROOK ONE TAKE",
           "brand": "JORDAN",
           "color": "WHITE/WHITE-BLACK-RAGE GREEN",
-          "size": 39,
-          "qty": 1,
-          "total": 1500000
-        },
-        {
-          "name": "JORDAN WESTBROOK ONE TAKE",
-          "brand": "JORDAN",
-          "color": "WHITE/WHITE-BLACK-RAGE GREEN",
-          "size": 39,
+          "size": 40,
+          "price": 1500000,
           "qty": 2,
           "total": 3000000
         },
         {
-          "name": "NIKE KYRIE 6",
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/nike-AIR_ZOOM_TYPE-BLACK_SUMMIT_WHITE_MENTA_ORANGE_TRANCE-1.jpg",
+          "name": "NIKE AIR ZOOM-TYPE",
           "brand": "NIKE",
-          "color": "WHITE/BLUE FURY-OPTI YELLOW-DIGITAL PINK",
-          "size": 39,
-          "qty": 3,
-          "total": 5340000
-        },
-        {
-          "name": "JORDAN AIR JORDAN 14 RETRO",
-          "brand": "JORDAN",
-          "color": "BLACK/GYM RED-WHITE-OFF WHITE",
-          "size": 40,
-          "qty": 5,
-          "total": 13400000
+          "color": "BLACK/SUMMIT WHITE-MENTA-ORANGE TRANCE",
+          "size": 38,
+          "price": 2500000,
+          "qty": 2,
+          "total": 5000000
         }
       ]
     },
@@ -578,6 +566,72 @@
       "role": "user",
       "id": 4,
       "cart": []
+    }
+  ],
+  "userTransaction": [
+    {
+      "userID": 3,
+      "date": "7/2/2020, 11:30:23 AM",
+      "total": 5000000,
+      "cart": [
+        {
+          "name": "NIKE AIR ZOOM-TYPE",
+          "brand": "NIKE",
+          "color": "BLACK/SUMMIT WHITE-MENTA-ORANGE TRANCE",
+          "size": 38,
+          "qty": "2",
+          "total": 5000000
+        }
+      ],
+      "id": 1
+    },
+    {
+      "userID": 3,
+      "date": "7/2/2020, 11:34:18 AM",
+      "total": 4629740,
+      "cart": [
+        {
+          "name": "PUMA CLYDE HARDWOOD RETRO",
+          "brand": "PUMA",
+          "color": "Puma White-Orange Pop",
+          "size": 40,
+          "qty": "1",
+          "total": 2314870
+        }
+      ],
+      "id": 2
+    },
+    {
+      "userID": 3,
+      "date": "7/2/2020, 11:36:06 AM",
+      "total": 3560000,
+      "cart": [
+        {
+          "name": "NIKE KYRIE 6",
+          "brand": "NIKE",
+          "color": "WHITE/BLUE FURY-OPTI YELLOW-DIGITAL PINK",
+          "size": 41,
+          "qty": "2",
+          "total": 3560000
+        }
+      ],
+      "id": 3
+    },
+    {
+      "userID": 3,
+      "date": "7/2/2020, 1:12:26 PM",
+      "total": 3000000,
+      "cart": [
+        {
+          "name": "JORDAN WESTBROOK ONE TAKE",
+          "brand": "JORDAN",
+          "color": "WHITE/WHITE-BLACK-RAGE GREEN",
+          "size": 42,
+          "qty": "2",
+          "total": 3000000
+        }
+      ],
+      "id": 4
     }
   ]
 }
