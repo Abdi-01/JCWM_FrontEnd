@@ -1,12 +1,20 @@
 {
-    "staff": [
-        {
-            "id": 1,
-            "nama": "Abdi",
-            "phone": "089647858545",
-            "email": "abdi@mail.com",
-            "password": "1234",
-            "posisi": "Programmer"
-        }
-    ]
+  "staff": [
+    {
+      "id": 1,
+      "nama": "Abdi",
+      "phone": "089647858545",
+      "email": "abdi@mail.com",
+      "password": "1234",
+      "posisi": "Programmer"
+    },
+    {
+      "nama": "Chris",
+      "phone": "085649785645",
+      "email": "chris@mail.com",
+      "password": "1234",
+      "posisi": "Front-end",
+      "id": 3
+    }
+  ]
 }
