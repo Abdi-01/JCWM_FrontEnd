@@ -1,8 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
 import CardProvince from '../components/cardProvinsi';
+import {API_URL_IDN} from '../support/list_url'
 
-const API_URL_PROVINSI = "https://indonesia-covid-19-api.now.sh"
 class Province extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ class Province extends React.Component {
     }
 
     getDataProvinsi = () => {
-        Axios.get(API_URL_PROVINSI + "/api/provinsi")
+        Axios.get(API_URL_IDN + "/api/provinsi")
             .then((res) => {
                 console.log("Get Provinsi SUccess :", res.data.data)
                 this.setState({ dataProvince: res.data.data })

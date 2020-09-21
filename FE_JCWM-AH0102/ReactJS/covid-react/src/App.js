@@ -21,6 +21,7 @@ class App extends React.Component {
           <Route path="/" component={Home} exact />
           <Route path="/province" component={Province} />
           <Route path="/countries" component={Countries} />
+          {/* Menerapkan parameter pada path route */}
           <Route path="/countries-detail/:countries/:iso" component={CountriesDetail} />
           <Route path="*" component={NotFound} />
         </Switch>

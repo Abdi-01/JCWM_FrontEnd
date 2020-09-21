@@ -1,17 +1,24 @@
 import React from 'react';
+import '../assets/style/notFound.css'
 
 class NotFound extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {}
     }
-    render() { 
-        return ( 
-            <div>
-                <h1>404 NOT FOUND</h1>
+    render() {
+        return (
+            <div id="notfound">
+                <div className="notfound">
+                    <div className="notfound-404">
+                        <h3>Oops! Page not found</h3>
+                        <h1><span>4</span><span>0</span><span>4</span></h1>
+                    </div>
+                    <h2>we are sorry, but the page you requested was not found</h2>
+                </div>
             </div>
-         );
+        );
     }
 }
- 
+
 export default NotFound;

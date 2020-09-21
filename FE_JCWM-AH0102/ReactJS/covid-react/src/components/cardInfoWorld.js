@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios'
+import {API_URL} from '../support/list_url'
 
-const API_URL = "https://covid19.mathdro.id"
 class WorldInfo extends React.Component {
     constructor(props) {
         super(props);

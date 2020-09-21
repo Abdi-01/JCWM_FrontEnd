@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
+import {API_URL_IDN} from '../support/list_url'
 
-const API_URL_INA = "https://indonesia-covid-19-api.now.sh"
 class IndoInfo extends React.Component {
     constructor(props) {
         super(props);
@@ -17,7 +17,7 @@ class IndoInfo extends React.Component {
     }
 
     getDataIndo = () => {
-        Axios.get(API_URL_INA + "/api")
+        Axios.get(API_URL_IDN + "/api")
             .then((res) => {
                 console.log("Get Indo Success :", res.data)
                 this.setState({ dataIndo: res.data })
