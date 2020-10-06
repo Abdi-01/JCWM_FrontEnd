@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    width: 70vw;
+    margin: 10px auto;
+}
+
+.navbar li{
+    margin: auto 10px;
+}
+
+.container {
+    margin: 20px auto;
+    width: 70vw;
+    height: 90vh;
+    background-color: darkgrey;
+    display: flex;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow: auto;
+}
+
+.main{
+    flex: 3;
+    order: 2;
+}
+
+.sidebar{
+    flex: 1;
+    order: 1;
+}
+
+.container-dua{
+    margin: 20px auto;
+    max-width: 70vw;
+}
+
+.layanan1,.layanan2,.layanan3{
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.layanan1{
+    background-color: aqua;
+}
+.layanan2{
+    background-color: red;
+}
+.layanan3{
+    background-color: coral;
+}
+h2{
+    font-size: 1rem;
+}
+
+/* Responsive media query */
+@media (min-width:600px){
+    /* Selama lebar layar tidak lebih kecil dari kondisi, maka coding dibawah ini akan dijalankan */
+    .layanan1,.layanan2,.layanan3{
+        width: 30%;
+    }
+    .container-dua{
+        justify-content: space-between;
+        display: flex;
+    }
+    h2{
+        font-size: 2rem;
+    }
+}

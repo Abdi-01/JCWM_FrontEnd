@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* untuk membuat variable didalam css */
+        :root {
+            --merah: red;
+            --kuning: orange;
+            --hijau: green;
+        }
+
+        /*
+        CHILD SELECTOR : mngakses tag child didalam parent
+        memilih tag heading yg berada didalam tag div */
+        div>h1,
+        p {
+            color: var(--merah);
+        }
+
+        div>h2 {
+            color: var(--kuning);
+        }
+
+        div>h3 {
+            color: var(--hijau);
+        }
+
+        /* DESCENDANT SELECTOR : mengakses semua tag child yg berada di tag parent */
+        body h2 {
+            color: blue;
+        }
+
+        /* pseudo-classes */
+        /* visited : merubah style jika page yg baru sudah dikunjungi */
+        a:visited {
+            color: cadetblue;
+        }
+
+        /* link : merubah warna default font link */
+        a:link {
+            color: rebeccapurple;
+        }
+
+        /* focus : ketika cursor berada di element input */
+        #test:focus {
+            background-color: aqua;
+        }
+        
+        /* active : mentrigger styling saat pertama kali element aktif atau pertama kali cursor difokuskan  */
+        #test2:active {
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="test" placeholder="" />
+    <input id="test2" placeholder="" />
+    <h1>Coba Bos</h1>
+    <header>
+        <h2>Header</h2>
+    </header>
+    <main>
+        <h2>Konten</h2>
+    </main>
+    <footer>
+        <h2>Footer</h2>
+    </footer>
+    <a href="#" target="_blank">Efek After and Before</a>
+    <div>
+        <h1>Halo Bos</h1>
+        <p>Bagaimana kabarmu</p>
+        <h2>Halo Bos</h2>
+        <h3>Halo Bos</h3>
+    </div>
+</body>
+
+</html>
