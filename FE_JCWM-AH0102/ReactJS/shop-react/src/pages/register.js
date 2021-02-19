@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { Button, Form, FormFeedback, FormGroup, FormText, Input, Jumbotron, Label, Progress } from 'reactstrap';
+import { Button, Form, FormFeedback, FormGroup, FormText, Input, Jumbotron, Label, Progress, CustomInput } from 'reactstrap';
 import { API_URL } from '../support/url'
 import Swal from 'sweetalert2'
 import { Redirect } from 'react-router-dom'
@@ -15,11 +15,13 @@ class RegisterPage extends React.Component {
             password: "",
             confpassword: "",
             userValid: false,
-            emailValid: false,
+            emailValid: true,
             passValue: 0,
             passLvl: "",
             passNotif: "",
-            uMessages: "Username inValid"
+            uMessages: "Username inValid",
+            type: 'password',
+            visible: false
         }
     }
 
@@ -38,20 +40,30 @@ class RegisterPage extends React.Component {
                 userValid: abjad.test(value) && numb.test(value) ? true : false,
             })
             //Mengecek username apakah ada yang sama di server setiap input form diisi
-            Axios.get(API_URL + `/users?username=${value}`)
-                .then((res) => {
-                    if (res.data.length > 0 && value.length > 1) {
-                        this.setState({ uMessages: "Username All Ready Exist", userValid: false })
-                    } else {
-                        this.setState({ uMessages: "Username inValid" })
-                    }
-                }).catch((err) => {
-                    console.log(err)
-                })
+            // Axios.get(API_URL + `/users?username=${value}`)
+            //     .then((res) => {
+            //         if (res.data.length > 0 && value.length > 1) {
+            //             this.setState({ uMessages: "Username All Ready Exist", userValid: false })
+            //         } else {
+            //             this.setState({ uMessages: "Username inValid" })
+            //         }
+            //     }).catch((err) => {
+            //         console.log(err)
+            //     })
         } else if (property === "email") {
-            this.setState({
-                emailValid: abjad.test(value) && value.includes("@") && domain.test(value) ? true : false,
-            })
+            // Axios.get(API_URL + `/users?email=${value}`)
+            //     .then((res) => {
+            //         if (res.data.length > 0 && value.length > 1) {
+            //             this.setState({ eMessages: "Email All Ready Exist", emailValid: false })
+            //             // this.setState({
+            //             //     emailValid: abjad.test(value) && value.includes("@") && domain.test(value) ? true : false,
+            //             // })
+            //         } else {
+            //             this.setState({ uMessages: "Email inValid" })
+            //         }
+            //     }).catch((err) => {
+            //         console.log(err)
+            //     })
         } else if (property === "password") {
             if (abjad.test(value) && !numb.test(value) && !symbol.test(value) && value.length > 5) {
                 // Jika hanya huruf
@@ -70,17 +82,8 @@ class RegisterPage extends React.Component {
     }
 
     btRegister = () => {
-        // Get Data Menggunankan innerRef
-        // let username = this.username.value
-        // let email = this.email.value
-        // let phone = this.phone.value
-        // let password = this.password.value
-        // let confpassword = this.confpassword.value
 
-        // Data dari state
         let { username, email, phone, password, confpassword, userValid, emailValid } = this.state
-
-        // console.log("cek input :", username, email, phone, password, confpassword)
         if (username === '' || email === '' || phone === '' || password === '' || confpassword === '') {
             Swal.fire({
                 icon: 'error',
@@ -88,18 +91,19 @@ class RegisterPage extends React.Component {
                 text: 'Fill in The Form'
             })
         } else {
-            if (password === confpassword && userValid && emailValid) {
+            if (password === confpassword) {
                 // Axios.get(API_URL + `/users?username=${username}`)
                 //     .then((res) => {
                 //         if (res.data.length === 0) {
-                Axios.post(API_URL + "/users", { username, email, phone, password, role: "user" })
+                // console.log(username, email, phone, password)
+                Axios.post(API_URL + "/users/regis", { username, email, phone, password })
                     .then((res) => {
                         console.log("success register :", res.data)
-                        this.setState({ redirect: true })
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Register Succesfully'
-                        })
+                        // this.setState({ redirect: true })
+                        // Swal.fire({
+                        //     icon: 'success',
+                        //     text: 'Register Succesfully'
+                        // })
                         // Axios.get(API_URL + `/users?id=${res.data.id}`)
                         //     .then((res) => localStorage.setItem("id", res.data[0].id))
                         //     .catch((err) => console.log("Error :", err))
@@ -128,6 +132,10 @@ class RegisterPage extends React.Component {
         }
     }
 
+    showPass = () => {
+        this.setState({ visible: !this.state.visible, type: !this.state.visible ? 'text' : 'password' })
+    }
+
     render() {
         if (this.state.redirect) {
             return <Redirect to="/" />
@@ -153,7 +161,7 @@ class RegisterPage extends React.Component {
                                     <Label className="text-white">Email</Label>
                                     <Input type="email" valid={this.state.emailValid} invalid={this.state.email.length > 0 && !this.state.emailValid} innerRef={(item) => this.email = item} onChange={(e) => this.handleChange("email", e.target.value)} />
                                     <FormFeedback valid >Email Valid</FormFeedback>
-                                    <FormFeedback>Email inValid</FormFeedback>
+                                    <FormFeedback>{this.state.eMessages}</FormFeedback>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label className="text-white">Phone</Label>
@@ -161,10 +169,19 @@ class RegisterPage extends React.Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label className="text-white">Password</Label>
-                                    <Input type="password" placeholder="Min. 6 Character (Abjad, Numb, Symbol)" innerRef={(item) => this.password = item} onChange={e => this.handleChange("password", e.target.value)} />
-                                    {this.state.password.length > 5 &&
-                                        <Progress value={this.state.passValue} color={this.state.passNotif}>{this.state.passLvl}</Progress>
-                                    }
+                                    <div class="input-group">
+                                        <Input type={this.state.type} placeholder="Min. 6 Character (Abjad, Numb, Symbol)" innerRef={(item) => this.password = item} onChange={e => this.handleChange("password", e.target.value)} />
+                                        {this.state.password.length > 5 &&
+                                            <Progress value={this.state.passValue} color={this.state.passNotif}>{this.state.passLvl}</Progress>
+                                        }
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons" style={{ cursor: 'pointer' }} onClick={this.showPass}>
+                                                    {this.state.visible ? 'visibility_off' : 'visibility'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </FormGroup>
                                 <FormGroup className="text-white">
                                     <Label>Conf. Password</Label>

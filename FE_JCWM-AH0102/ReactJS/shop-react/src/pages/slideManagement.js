@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownMenu, Form, Input, Modal, ModalBody, ModalFooter, ModalHeader, Table } from 'reactstrap'
 import { API_URL } from '../support/url'
-
+import { getSlide } from '../redux/actions'
+import { connect } from 'react-redux';
 class SlideManagement extends Component {
     constructor(props) {
         super(props);
@@ -19,11 +20,12 @@ class SlideManagement extends Component {
     }
 
     getSlide = (order) => {
-        let url = order ? `/carousel?_sort=title&_order=${order}` : '/carousel'
+        let url = order ? `/carousel?_sort=title&_order=${order}` : '/carousel/getCarousel'
         Axios.get(API_URL + url)
             .then((res) => {
                 console.log("succes get slide", res.data)
-                this.setState({ dbSlide: res.data })
+                this.props.getSlide(res.data)
+                // this.setState({ dbSlide: res.data })
             })
             .catch((err) => {
                 console.log("err get slide", err)
@@ -34,7 +36,7 @@ class SlideManagement extends Component {
         Axios.delete(API_URL + `/carousel/${id}`)
             .then((res) => {
                 console.log("delete carousel success", res.data)
-                this.getSlide()
+                this.props.getSlide(res.data)
             })
             .catch((err) => {
                 console.log("delete carousel err", err)
@@ -47,7 +49,7 @@ class SlideManagement extends Component {
     }
 
     renderData = () => {
-        return this.state.dbSlide.map((item, index) => {
+        return this.props.slides.map((item, index) => {
             return (
                 <tr>
                     <th>{index + 1}</th>
@@ -69,7 +71,8 @@ class SlideManagement extends Component {
         Axios.patch(API_URL + `/carousel/${id}`, { image, title })
             .then((res) => {
                 console.log("edit slide success", res.data)
-                this.getSlide()
+                // this.getSlide()
+                this.props.getSlide(res.data)
                 this.setState({ modalOpen: !this.state.modalOpen })
             })
             .catch((err) => {
@@ -110,12 +113,12 @@ class SlideManagement extends Component {
                          </ModalHeader>
                         <ModalBody>
                             <Form>
-                                <Input type="text" placeholder="Slide Image" defaultValue={dbSlide[selectedIdx].image} innerRef={(value) => this.slideImg = value} />
-                                <Input type="text" placeholder="Slide Title" defaultValue={dbSlide[selectedIdx].title} innerRef={(value) => this.slideTitle = value} />
+                                <Input type="text" placeholder="Slide Image" defaultValue={this.props.slides[selectedIdx].image} innerRef={(value) => this.slideImg = value} />
+                                <Input type="text" placeholder="Slide Title" defaultValue={this.props.slides[selectedIdx].title} innerRef={(value) => this.slideTitle = value} />
                             </Form>
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="success" onClick={() => this.btSave(dbSlide[selectedIdx].id)}>Save</Button>
+                            <Button color="success" onClick={() => this.btSave(this.props.slides[selectedIdx].id)}>Save</Button>
                             <Button color="secondary" onClick={() => this.setState({ modalOpen: !this.state.modalOpen, selectedIdx: null })}>Cancel</Button>
                         </ModalFooter>
                     </Modal>
@@ -125,4 +128,11 @@ class SlideManagement extends Component {
     }
 }
 
-export default SlideManagement;
+const mapStateToProps = (state) => {
+    console.log("slide")
+    return {
+        slides: state.slideReducer.slide
+    }
+}
+
+export default connect(mapStateToProps, { getSlide })(SlideManagement);

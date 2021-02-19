@@ -14,9 +14,11 @@ import ProductManagement from './pages/productManagement';
 import NotFound from './pages/notFound';
 import SlideManagement from './pages/slideManagement';
 import { connect } from 'react-redux'
-import { login } from './redux/actions'
+import { login, getProducts, keepLogin, getCart } from './redux/actions'
 import CartPage from './pages/cartUser';
 import TransactionPage from './pages/transaction';
+import TransactionAdmin from './pages/adminTransaction';
+import VerificationPage from './pages/verification';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,19 +28,32 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.keepLogin()
+    this.props.keepLogin()
+    this.props.getCart()
+    this.getProducts()
   }
 
-  keepLogin = () => {
-    let id = localStorage.getItem("id")
-    if (id) {
-      Axios.get(API_URL + `/users?id=${id}`)
-        .then((res) => {
-          this.props.login(res.data[0])
-        }).catch((err) => {
-          console.log("keepLogin Error :", err)
-        })
-    }
+  // keepLogin = () => {
+  //   let id = localStorage.getItem("id")
+  //   if (id) {
+  //     Axios.get(API_URL + `/users?id=${id}`)
+  //       .then((res) => {
+  //         this.props.login(res.data[0])
+  //       }).catch((err) => {
+  //         console.log("keepLogin Error :", err)
+  //       })
+  //   }
+  // }
+
+  getProducts = () => {
+    Axios.get(API_URL + "/products/getProducts")
+      .then((res) => {
+        console.log("Get Product success :", res.data)
+        this.props.getProducts(res.data)
+      })
+      .catch((err) => {
+        console.log("Get Product Error :", err)
+      })
   }
 
   render() {
@@ -51,10 +66,12 @@ class App extends React.Component {
           <Route path="/register" component={RegisterPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/product-detail" component={ProductDetail} />
+          <Route path='/verification/:token' component={VerificationPage}/>
           {
             this.props.role && this.props.role === "admin" ?
               <>
                 <Route path="/product-admin" component={ProductManagement} />
+                <Route path="/transaction-admin" component={TransactionAdmin} />
                 <Route path="/slide-admin" component={SlideManagement} />
               </>
               :
@@ -77,4 +94,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { login })(App);
+export default connect(mapStateToProps, { login, getProducts, keepLogin, getCart })(App);

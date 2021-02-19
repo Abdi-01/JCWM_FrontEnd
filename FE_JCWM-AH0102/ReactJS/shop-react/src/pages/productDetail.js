@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { API_URL } from '../support/url'
 import { Button, ButtonGroup, Input, Jumbotron } from 'reactstrap';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 
 class ProductDetail extends React.Component {
     constructor(props) {
@@ -21,10 +22,10 @@ class ProductDetail extends React.Component {
 
     getProductDetail = () => {
         console.log(this.props.location.search)
-        Axios.get(API_URL + `/products${this.props.location.search}`)
+        Axios.get(API_URL + `/products/getProducts${this.props.location.search}`)
             .then((res) => {
                 console.log("success get detail:", res.data)
-                this.setState({ detail: res.data[0] })
+                this.setState({ detail: res.data })
             })
             .catch((err) => {
                 console.log("Error get detail:", err)
@@ -35,7 +36,7 @@ class ProductDetail extends React.Component {
         return images.map((item, index) => {
             return (
                 <div className="flex-grow-1 select-image" onClick={() => this.setState({ thumbnail: index })} style={{ padding: "0 1px" }}>
-                    <img src={item} key={index} width="100%" />
+                    <img src={item.image} key={index} width="100%" />
                 </div>
             )
         })
@@ -44,7 +45,7 @@ class ProductDetail extends React.Component {
     renderStock = (stock) => {
         return stock.map((item, index) => {
             return (
-                <Button outline color="primary" onClick={() => this.setState({ total: item.total, size: item.code })} key={index} disabled={item.total === 0 && true}>{item.code}</Button>
+                <Button outline color="primary" onClick={() => this.setState({ total: item.total, size: item.code, idstock: item.idstock })} key={index} disabled={item.total === 0 && true}>{item.code}</Button>
             )
         })
     }
@@ -58,18 +59,17 @@ class ProductDetail extends React.Component {
     }
 
     btAddToCart = () => {
-        this.props.cart.push({
-            image: this.state.detail.images[0],
-            name: this.state.detail.name,
-            category: this.state.detail.category,
-            size: this.state.size,
-            price: parseInt(this.state.detail.price),
-            qty: this.state.qty,
-            total: (this.state.qty * this.state.detail.price)
-        })
-        Axios.patch(API_URL + `/users/${localStorage.getItem("id")}`, { cart: this.props.cart })
+        let cart = {
+            iduser: this.props.iduser,
+            idstock: this.state.idstock,
+            idproduct: this.state.detail.idproduct,
+            qty: this.state.qty
+        }
+        console.log(cart)
+        Axios.post(API_URL + `/users/addCart`, { cart })
             .then((response) => {
                 console.log("success add to cart:", response.data)
+                this.setState({ toCart: true })
             })
             .catch((err) => {
                 console.log("Error add to cart:", err)
@@ -78,13 +78,17 @@ class ProductDetail extends React.Component {
 
     render() {
         let { detail } = this.state
+        console.log("To Cart Redirect Check:", Boolean(this.state.toCart), this.state.toCart)
+        if (this.state.toCart) {
+            return <Redirect to="/cart" />
+        }
         return (
             <div className="container">
                 {
-                    detail.id &&
+                    detail.idproduct &&
                     <Jumbotron className="row" style={{ padding: "3vh" }}>
                         <div className="col-md-4">
-                            <img src={detail.images[this.state.thumbnail]} width="100%" />
+                            <img src={detail.images[this.state.thumbnail].image} width="100%" />
                             <div className="d-flex mt-1">
                                 {this.renderThumbnail(detail.images)}
                             </div>
@@ -143,6 +147,7 @@ class ProductDetail extends React.Component {
 const mapStateToProps = (state) => {
     console.log("cek data", state.authReducer)
     return {
+        iduser: state.authReducer.iduser,
         cart: state.authReducer.cart
     }
 }

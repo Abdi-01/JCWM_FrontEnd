@@ -19,7 +19,7 @@ class HomePage extends React.Component {
     }
 
     getCarousel = () => {
-        Axios.get(API_URL + '/carousel')
+        Axios.get(API_URL + '/carousel/getCarousel')
             .then((res) => {
                 console.log("success carousel :", res.data)
                 this.props.getSlide(res.data)

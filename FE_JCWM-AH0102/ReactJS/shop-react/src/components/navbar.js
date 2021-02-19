@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem } from 'reactstrap';
+import { Link, Redirect } from 'react-router-dom';
+import { Button, Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavbarToggler, Badge, NavItem, ListGroupItem } from 'reactstrap';
 import ModalLogin from './modalLogin';
 import { connect } from 'react-redux'
 import { logout } from '../redux/actions'
@@ -17,10 +17,14 @@ class NavbarComp extends React.Component {
     btLogout = () => {
         localStorage.removeItem("id")
         this.props.logout()
+        // this.setState({ redirect: true })
     }
 
     render() {
         let { user } = this.props
+        // if (this.state.redirect) {
+        //     return <Redirect to="/" />
+        // }
         return (
             <div>
                 <Navbar color="faded" light expand="md">
@@ -38,9 +42,49 @@ class NavbarComp extends React.Component {
                             <NavItem>
                                 <Link to="/about" className="nav-link">About</Link>
                             </NavItem>
-                            <div style={{ marginLeft: '70vw' }}>
+                            <div style={{ marginLeft: '70vw', display: 'flex' }}>
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={() => this.setState({ dropdownOpen: !this.state.dropdownOpen })}>
+                                    <DropdownToggle caret>
+                                        <>
+                                            <span class="material-icons">
+                                                shopping_cart
+                                            </span>
+                                            {/* <Badge color="secondary">{this.props.cart.length}</Badge> */}
+                                        </>
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        {
+                                            // this.props.cart.length == 0 ?
+                                            //     <DropdownItem>Cart is Empty</DropdownItem>
+                                            //     :
+                                            //     this.props.cart.map((item, index) => {
+                                            //         return (
+                                            //             <DropdownItem style={{ width: 300 }} >
+                                            //                 <div className="row">
+                                            //                     <div className="col-3">
+                                            //                         <img src={item.image} width="60px" />
+                                            //                     </div>
+                                            //                     <div className="col-4">
+                                            //                         <p style={{ marginBottom: 0 }}>{item.name}</p>
+                                            //                         <p style={{ marginBottom: 0 }}>Size : {item.size}</p>
+                                            //                         <p style={{ marginBottom: 0 }}>Qty : {item.qty}</p>
+                                            //                         <p style={{ marginBottom: 0 }}>Rp. {item.price.toLocaleString()}</p>
+                                            //                     </div>
+                                            //                 </div>
+                                            //             </DropdownItem >
+                                            //         )
+                                            //     })
+                                        }
+                                        <DropdownItem divider />
+                                        <DropdownItem >
+                                            <Link to="/cart">
+                                                Go To Cart
+                                        </Link>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
                                 {
-                                    user.id ?
+                                    user.iduser ?
                                         user.role === "user" ?
                                             <Dropdown isOpen={this.state.dropOpen} toggle={() => this.setState({ dropOpen: !this.state.dropOpen })}>
                                                 <DropdownToggle caret>
@@ -72,13 +116,19 @@ class NavbarComp extends React.Component {
                                                             Products Management
                                                         </Link>
                                                     </DropdownItem>
-                                                    <DropdownItem>Transactions Management</DropdownItem>
+                                                    <DropdownItem>
+                                                        <Link to="/transaction-admin">
+                                                            Transactions Management
+                                                        </Link>
+                                                    </DropdownItem>
                                                     <DropdownItem>
                                                         <Link to="/slide-admin">
                                                             Slide Management
                                                         </Link>
                                                     </DropdownItem>
-                                                    <DropdownItem onClick={this.btLogout}>Logout</DropdownItem>
+                                                    <DropdownItem onClick={this.btLogout}>
+                                                        Logout
+                                                        </DropdownItem>
                                                 </DropdownMenu>
                                             </Dropdown>
                                         :
@@ -91,7 +141,6 @@ class NavbarComp extends React.Component {
                                             </Button>
                                         </>
                                 }
-
                             </div>
                         </Nav>
                     </Collapse>
@@ -100,5 +149,13 @@ class NavbarComp extends React.Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    console.log("cek data", state.authReducer)
+    return {
+        user: state.authReducer,
+        cart: state.authReducer.cart,
+        iduser: state.authReducer.iduser
+    }
+}
 
-export default connect(null, { logout })(NavbarComp);
+export default connect(mapStateToProps, { logout })(NavbarComp);

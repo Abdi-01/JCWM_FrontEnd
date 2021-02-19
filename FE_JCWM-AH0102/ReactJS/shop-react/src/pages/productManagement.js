@@ -2,8 +2,10 @@ import React from 'react';
 import Axios from 'axios';
 import { API_URL } from '../support/url'
 import { Button, Table, Badge } from 'reactstrap';
+import { getProducts } from '../redux/actions'
 import AddProduct from '../components/addProduct';
 import EditProduct from '../components/editProduct';
+import { connect } from 'react-redux';
 
 class ProductManagement extends React.Component {
     constructor(props) {
@@ -16,18 +18,7 @@ class ProductManagement extends React.Component {
     }
 
     componentDidMount() {
-        this.getProducts()
-    }
-
-    getProducts = () => {
-        Axios.get(API_URL + "/products")
-            .then((res) => {
-                console.log("Get Products Success :", res.data)
-                this.setState({ dbProducts: res.data })
-            })
-            .catch((err) => {
-                console.log("Get Products Error :", err)
-            })
+     
     }
 
     renderStock = (stock) => {
@@ -39,11 +30,11 @@ class ProductManagement extends React.Component {
     }
 
     renderProduct = () => {
-        return this.state.dbProducts.map((item, index) => {
+        return this.props.products.map((item, index) => {
             return (
                 <tr key={index}>
                     <th>{index + 1}</th>
-                    <td><img src={item.images[0]} width="100%" /></td>
+                    <td><img src={item.images[0].image} width="100%" /></td>
                     <td>{item.name}</td>
                     <td>{item.brand}</td>
                     <td>{item.category}</td>
@@ -64,7 +55,7 @@ class ProductManagement extends React.Component {
         Axios.delete(API_URL + `/products/${id}`)
             .then((res) => {
                 console.log("delete success", res.data)
-                this.getProducts()
+                this.props.getProducts(res.data)
             })
             .catch((err) => {
                 console.log("delete error", err)
@@ -99,8 +90,7 @@ class ProductManagement extends React.Component {
                     <EditProduct
                         editOpen={this.state.editOpen}
                         editClose={() => this.setState({ editOpen: !this.state.editOpen, selectedIdx: null })}
-                        data={this.state.dbProducts[this.state.selectedIdx]}
-                        getProducts={this.getProducts}
+                        data={this.props.products[this.state.selectedIdx]}
                     />
                 }
             </div>
@@ -108,4 +98,11 @@ class ProductManagement extends React.Component {
     }
 }
 
-export default ProductManagement;
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        products: state.productReducers
+    }
+}
+
+export default connect(mapStateToProps, { getProducts })(ProductManagement);

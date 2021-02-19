@@ -6,12 +6,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
 // createStore : Digunakan untuk membuat global store dari combineReducer
-import { createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 // provider : Digunakan untuk menghubungkan antara component, action dan reducer
 import { Provider } from 'react-redux'
 import { Reducer } from './redux/reducers'
+import ReduxThunk from 'redux-thunk'
 
-const storeReducer = createStore(Reducer)
+const storeReducer = createStore(Reducer, {}, applyMiddleware(ReduxThunk))
 ReactDOM.render(
   <Provider store={storeReducer}>
     <BrowserRouter>

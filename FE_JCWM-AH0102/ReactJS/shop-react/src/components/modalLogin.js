@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Alert, Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { API_URL } from '../support/url'
 import { connect } from 'react-redux'
-import { login } from '../redux/actions'
+import { login, Login } from '../redux/actions'
 
 class ModalLogin extends React.Component {
     constructor(props) {
@@ -34,17 +34,17 @@ class ModalLogin extends React.Component {
         if (username === "" || password === "") {
             this.setState({ warna: "warning", message: "Fill in the form", alert: !this.state.alert })
         } else {
-            let query = username.includes("@") ? "email" : "username"
-            Axios.get(API_URL + `/users?${query}=${username}&password=${password}`)
-                .then((res) => {
-                    console.log("Login Success :", res.data)
-                    this.setState({ warna: "success", message: "Login Successfully", alert: !this.state.alert, success: true })
-                    localStorage.setItem("id", res.data[0].id)
-                    this.props.login(res.data[0])
-                })
-                .catch((err) => {
-                    console.log("Login Error :", err)
-                })
+            this.props.Login( username, password)
+            // Axios.get(API_URL + `/users?${query}=${username}&password=${password}`)
+            //     .then((res) => {
+            //         console.log("Login Success :", res.data)
+            //         // this.setState({ warna: "success", message: "Login Successfully", alert: !this.state.alert, success: true })
+            //         localStorage.setItem("id", res.data[0].id)
+            //         this.props.login(res.data[0])
+            //     })
+            //     .catch((err) => {
+            //         console.log("Login Error :", err)
+            //     })
         }
     }
 
@@ -77,4 +77,4 @@ class ModalLogin extends React.Component {
     }
 }
 
-export default connect(null, { login })(ModalLogin);
+export default connect(null, { login, Login })(ModalLogin);

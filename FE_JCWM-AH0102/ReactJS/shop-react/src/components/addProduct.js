@@ -45,7 +45,11 @@ class AddProduct extends React.Component {
                 }
             })
 
-            Axios.post(API_URL + "/products", { name, brand, category, colour, description, price, stock, images })
+            Axios.post(API_URL + "/products", {
+                data: { name, brand, category, colour, description, price },
+                stock,
+                images
+            })
                 .then((res) => {
                     console.log("add success", res.data)
                     this.setState({ modalOpen: !this.state.modalOpen })

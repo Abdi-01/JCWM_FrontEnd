@@ -17,13 +17,14 @@
       "password": "12345",
       "cart": [
         {
-          "image": "https://kickz.akamaized.net/en/media/images/p/1200/W_NIKE_REACT_ELEMENT_55-WHITE_FIRE_PINK_SAPPHIRE_BARELY_VOLT-1.jpg",
-          "name": "NIKE W NIKE REACT ELEMENT 55",
+          "idproduct": 1,
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/adidas_performance-MARQUEE_MID_VEGAS-legend_ink_ftwr_white_flash_orange-2.jpg",
+          "name": "ADIDAS MARQUEE MID - VEGAS",
           "category": "Shoes",
           "size": 40,
-          "price": 2345000,
-          "qty": 2,
-          "total": 4690000
+          "price": 1540002,
+          "qty": 1,
+          "total": 1540002
         }
       ],
       "role": "user"
@@ -120,7 +121,7 @@
         },
         {
           "code": 40,
-          "total": 10
+          "total": 4
         },
         {
           "code": 41,
@@ -236,7 +237,7 @@
         },
         {
           "code": 40,
-          "total": 5
+          "total": 1
         },
         {
           "code": 41,
@@ -385,7 +386,7 @@
         },
         {
           "code": "39",
-          "total": 5
+          "total": 4
         },
         {
           "code": "40",
@@ -412,11 +413,10 @@
   ],
   "userTransactions": [
     {
-      "id": 1,
       "iduser": 2,
       "username": "user",
       "date": "5/9/2020",
-      "status": "Unpaid",
+      "status": "Success",
       "cart": [
         {
           "image": "https://kickz.akamaized.net/en/media/images/p/1200/Air_Jordan_14_Retro-BLACK_GYM_RED_WHITE_OFF_WHITE-1.jpg",
@@ -436,7 +436,120 @@
           "qty": 2,
           "total": 3560000
         }
-      ]
+      ],
+      "id": 1
+    },
+    {
+      "iduser": 2,
+      "username": "user",
+      "date": "6/9/2020",
+      "status": "Unpaid",
+      "cart": [
+        {
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/W_NIKE_REACT_ELEMENT_55-WHITE_FIRE_PINK_SAPPHIRE_BARELY_VOLT-1.jpg",
+          "name": "NIKE W NIKE REACT ELEMENT 55",
+          "category": "Shoes",
+          "size": 40,
+          "price": 2345000,
+          "qty": 2,
+          "total": 4690000
+        },
+        {
+          "image": "https://www.anpkickz.com/image/cache/Air_Jordan/Air_Jordan_1/air-jordan-1-retro-high-og-obsidian-university-blue/air-jordan-1-retro-high-og-obsidian-university-blue-unc-555088-140-(1)-1300x1300.jpg",
+          "name": "Nike Air Jordan 1",
+          "category": "Shoes",
+          "size": "40",
+          "price": 2500000,
+          "qty": 1,
+          "total": 2500000
+        },
+        {
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/adidas_performance-MARQUEE_MID_VEGAS-legend_ink_ftwr_white_flash_orange-2.jpg",
+          "name": "ADIDAS MARQUEE MID - VEGAS",
+          "category": "Shoes",
+          "size": 41,
+          "price": 1540002,
+          "qty": 1,
+          "total": 1540002
+        }
+      ],
+      "id": 2
+    },
+    {
+      "iduser": 3,
+      "username": "aldi",
+      "date": "7/9/2020",
+      "status": "Success",
+      "cart": [
+        {
+          "idproduct": 8,
+          "image": "https://www.anpkickz.com/image/cache/Air_Jordan/Air_Jordan_1/air-jordan-1-retro-high-og-obsidian-university-blue/air-jordan-1-retro-high-og-obsidian-university-blue-unc-555088-140-(1)-1300x1300.jpg",
+          "name": "Nike Air Jordan 1",
+          "category": "Shoes",
+          "size": "39",
+          "price": 2500000,
+          "qty": 1,
+          "total": 2500000
+        }
+      ],
+      "id": 3
+    },
+    {
+      "iduser": 3,
+      "username": "aldi",
+      "date": "8/9/2020",
+      "status": "Unpaid",
+      "cart": [
+        {
+          "idproduct": 1,
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/adidas_performance-MARQUEE_MID_VEGAS-legend_ink_ftwr_white_flash_orange-2.jpg",
+          "name": "ADIDAS MARQUEE MID - VEGAS",
+          "category": "Shoes",
+          "size": 40,
+          "price": 1540002,
+          "qty": 1,
+          "total": 1540002
+        }
+      ],
+      "id": 4
+    },
+    {
+      "iduser": 3,
+      "username": "aldi",
+      "date": "8/9/2020",
+      "status": "Unpaid",
+      "cart": [
+        {
+          "idproduct": 1,
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/adidas_performance-MARQUEE_MID_VEGAS-legend_ink_ftwr_white_flash_orange-2.jpg",
+          "name": "ADIDAS MARQUEE MID - VEGAS",
+          "category": "Shoes",
+          "size": 40,
+          "price": 1540002,
+          "qty": 1,
+          "total": 1540002
+        }
+      ],
+      "id": 5
+    },
+    {
+      "iduser": 3,
+      "username": "aldi",
+      "date": "8/9/2020",
+      "status": "Unpaid",
+      "cart": [
+        {
+          "idproduct": 1,
+          "image": "https://kickz.akamaized.net/en/media/images/p/1200/adidas_performance-MARQUEE_MID_VEGAS-legend_ink_ftwr_white_flash_orange-2.jpg",
+          "name": "ADIDAS MARQUEE MID - VEGAS",
+          "category": "Shoes",
+          "size": 40,
+          "price": 1540002,
+          "qty": 1,
+          "total": 1540002
+        }
+      ],
+      "id": 6
     }
   ]
 }

@@ -2,12 +2,13 @@ import Axios from 'axios';
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { API_URL } from '../support/url'
-
+import { getProducts } from '../redux/actions'
+import { connect } from 'react-redux';
 class EditProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.data.id,
+            id: props.data.idproduct,
             name: props.data.name,
             brand: props.data.brand,
             category: props.data.category,
@@ -16,10 +17,11 @@ class EditProduct extends React.Component {
             price: props.data.price,
             stock: props.data.stock,
             images: props.data.images,
-            sizeShoes: [38, 39, 40, 41, 42],
+            sizeShoes: [38, 39, 40, 41, 42,43],
             sizeClothing: ["S", "M", "L", "XL", "XXL"],
             listGambar: ["images1", "images2", "images3", "images4", "images5"]
         }
+        console.log(props.data)
     }
 
     handleChange = (property, value) => {
@@ -32,7 +34,7 @@ class EditProduct extends React.Component {
             return (
                 <FormGroup>
                     <Label>{item}</Label>
-                    <Input type="number" defaultValue={stock[index].total}
+                    <Input type="number" defaultValue={stock[index] && stock[index].total}
                         innerRef={value => this[`code${item}`] = value}
                     />
                 </FormGroup>
@@ -55,7 +57,8 @@ class EditProduct extends React.Component {
         Axios.patch(API_URL + `/products/${id}`, { name, category, brand, colour, images, description, price, stock })
             .then((res) => {
                 console.log("success update", res.data)
-                this.props.getProducts()
+                // getProducts dari action
+                this.props.getProducts(res.data)
                 this.props.editClose()
             }).catch((err) => {
                 console.log("error update", err)
@@ -80,7 +83,7 @@ class EditProduct extends React.Component {
                                 <div className="d-flex flex-wrap">
                                     {
                                         listGambar.map((item, index) => {
-                                            return <Input type="text" style={{ width: "30%" }} defaultValue={images[index]}
+                                            return <Input type="text" style={{ width: "30%" }} defaultValue={images[index].image}
                                                 innerRef={value => this[item] = value}
                                             />
                                         })
@@ -131,4 +134,4 @@ class EditProduct extends React.Component {
     }
 }
 
-export default EditProduct;
+export default connect(null, { getProducts })(EditProduct);
